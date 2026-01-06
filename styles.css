@@ -740,6 +740,36 @@ body.dark-mode .note {
     transform: translateX(5px);
 }
 
+/* Presentation Section */
+.pdf-container {
+    background: var(--bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-container iframe {
+    display: block;
+}
+
+.download-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 153, 255, 0.3);
+}
+
+.download-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 153, 255, 0.4);
+}
+
 @media (max-width: 768px) {
     .ethernet-designs-section .section-title {
         font-size: 2rem;
