@@ -95,66 +95,8 @@
                 </div>
             </div>
 
-            <div class="task-item" onclick="toggleTask(this)" data-completed="false" data-task-id="task-2">
+            <div class="task-item completed" onclick="toggleTask(this)" data-completed="true" data-task-id="task-2">
                 <div class="task-number">2</div>
-                <div class="task-content">
-                    <strong>Provide ZCU102 Ethernet Interfaces Map with PS-GEM DT Nodes</strong>
-                    <ul style="margin-left: 2rem; margin-top: 0.8rem;">
-                        <li><strong>PS-GEM → EMIO → PCS/PMA → SFP</strong> (1000base-x/sgmii)
-                            <br><small>Include PHY/MAC mode details, MDIO bus info, full DT nodes for 2020.1 → 2025.2</small>
-                        </li>
-                        <li style="margin-top: 0.5rem;"><strong>PS-GEM → MIO → RGMII → TI PHY DPxx</strong> (1000base-t)
-                            <br><small>Include MDIO bus info, full DT nodes for 2020.1 → 2025.2</small>
-                        </li>
-                        <li style="margin-top: 0.5rem;"><strong>PS-GEM → PS-GTR</strong> (1000base-x/sgmii)
-                            <br><small>Build BSP for multiple versions and decompile DTB</small>
-                        </li>
-                        <li style="margin-top: 0.5rem;"><strong>Other dev boards:</strong> KR260 consideration</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="task-item" onclick="toggleTask(this)" data-completed="false" data-task-id="task-3">
-                <div class="task-content">
-                    <strong>MRMAC/DCMAC Debug Playbook</strong>
-                    <div style="margin-left: 2rem; margin-top: 0.8rem;">
-                        Create 1-2 page cheat sheet including:
-                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
-                            <li>Driver links</li>
-                            <li>DT links</li>
-                            <li>Useful ARs</li>
-                            <li>Version differences/notes</li>
-                            <li>Cases of note (e.g., 3x25 config)</li>
-                            <li>Main issue types/details & driver issues</li>
-                        </ul>
-                        <a href="playbook.html" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;" onclick="event.stopPropagation();">📖 View Playbook →</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="task-item" onclick="toggleTask(this)" data-completed="false" data-task-id="task-4">
-                <div class="task-content">
-                    <strong>AXI 10G/25G Debug Playbook</strong>
-                    <div style="margin-left: 2rem; margin-top: 0.8rem;">
-                        Create 1-2 page cheat sheet including:
-                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
-                            <li>Driver links</li>
-                            <li>DT links</li>
-                            <li>Useful ARs</li>
-                            <li>Version differences/notes</li>
-                            <li>Cases of note</li>
-                            <li>Main issue types/details</li>
-                            <li>Driver issues</li>
-                            <li>DT issues</li>
-                            <li>Clocking notes</li>
-                            <li>DMA reset timeout patch</li>
-                        </ul>
-                        <a href="playbook.html" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;" onclick="event.stopPropagation();">📖 View Playbook →</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="task-item completed" onclick="toggleTask(this)" data-completed="true" data-task-id="task-5">
                 <div class="task-content">
                     <strong>✓ Archive Jenkins ZCU102 Update Automation Notes</strong>
                     <span class="done-badge">DONE</span>
@@ -179,6 +121,67 @@
                                onclick="event.stopPropagation();" 
                                target="_blank">📊 PowerPoint →</a>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-item" onclick="toggleTask(this)" data-completed="false" data-task-id="task-3">
+                <div class="task-number">3</div>
+                <div class="task-content">
+                    <strong>Provide ZCU102 Ethernet Interfaces Map with PS-GEM DT Nodes</strong>
+                    <ul style="margin-left: 2rem; margin-top: 0.8rem;">
+                        <li><strong>PS-GEM → EMIO → PCS/PMA → SFP</strong> (1000base-x/sgmii)
+                            <br><small>Include PHY/MAC mode details, MDIO bus info, full DT nodes for 2020.1 → 2025.2</small>
+                        </li>
+                        <li style="margin-top: 0.5rem;"><strong>PS-GEM → MIO → RGMII → TI PHY DPxx</strong> (1000base-t)
+                            <br><small>Include MDIO bus info, full DT nodes for 2020.1 → 2025.2</small>
+                        </li>
+                        <li style="margin-top: 0.5rem;"><strong>PS-GEM → PS-GTR</strong> (1000base-x/sgmii)
+                            <br><small>Build BSP for multiple versions and decompile DTB</small>
+                        </li>
+                        <li style="margin-top: 0.5rem;"><strong>Other dev boards:</strong> KR260 consideration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-item" onclick="toggleTask(this)" data-completed="false" data-task-id="task-4">
+                <div class="task-number">4</div>
+                <div class="task-content">
+                    <strong>MRMAC/DCMAC Debug Playbook</strong>
+                    <div style="margin-left: 2rem; margin-top: 0.8rem;">
+                        Create 1-2 page cheat sheet including:
+                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                            <li>Driver links</li>
+                            <li>DT links</li>
+                            <li>Useful ARs</li>
+                            <li>Version differences/notes</li>
+                            <li>Cases of note (e.g., 3x25 config)</li>
+                            <li>Main issue types/details & driver issues</li>
+                        </ul>
+                        <a href="playbook.html" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;" onclick="event.stopPropagation();">📖 View Playbook →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-item" onclick="toggleTask(this)" data-completed="false" data-task-id="task-5">
+                <div class="task-number">5</div>
+                <div class="task-content">
+                    <strong>AXI 10G/25G Debug Playbook</strong>
+                    <div style="margin-left: 2rem; margin-top: 0.8rem;">
+                        Create 1-2 page cheat sheet including:
+                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                            <li>Driver links</li>
+                            <li>DT links</li>
+                            <li>Useful ARs</li>
+                            <li>Version differences/notes</li>
+                            <li>Cases of note</li>
+                            <li>Main issue types/details</li>
+                            <li>Driver issues</li>
+                            <li>DT issues</li>
+                            <li>Clocking notes</li>
+                            <li>DMA reset timeout patch</li>
+                        </ul>
+                        <a href="playbook.html" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;" onclick="event.stopPropagation();">📖 View Playbook →</a>
                     </div>
                 </div>
             </div>
