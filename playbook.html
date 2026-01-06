@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethernet Debug Playbook</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #f8f9fa;
+        }
+
+        .playbook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .playbook-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideIn 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .playbook-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-right: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            color: #764ba2;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '▸';
+            margin-right: 0.5rem;
+            color: #667eea;
+            font-size: 1.4rem;
+        }
+
+        .link-list {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .link-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .link-item:last-child {
+            border-bottom: none;
+        }
+
+        .link-item a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .link-item a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .info-box-title {
+            font-weight: 600;
+            color: #d63031;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #51cf66;
+            font-weight: 700;
+        }
+
+        .note-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .note-box strong {
+            color: #f59f00;
+        }
+
+        .code-snippet {
+            background: #2d3748;
+            color: #a0aec0;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .code-snippet code {
+            color: #68d391;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tag.version {
+            background: #764ba2;
+        }
+
+        .tag.issue {
+            background: #ff6b6b;
+        }
+
+        .tag.config {
+            background: #51cf66;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: white;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 1024px) {
+            .playbook-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            body {
+                padding: 1rem;
+            }
+
+            .playbook-card {
+                padding: 1.5rem;
+            }
+        }
+
+        .accordion {
+            margin-bottom: 1rem;
+        }
+
+        .accordion-header {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            user-select: none;
+        }
+
+        .accordion-header:hover {
+            background: #764ba2;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #f8f9fa;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .accordion-content.active {
+            max-height: 2000px;
+            padding: 1rem;
+        }
+
+        .issue-card {
+            background: white;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+
+        .issue-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .issue-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="transition-tracker.html" class="back-button">← Back to Tracker</a>
+        
+        <header>
+            <h1>🔧 Ethernet Debug Playbook</h1>
+            <p class="subtitle">Quick Reference Guide for MRMAC/DCMAC & AXI 10G/25G Ethernet</p>
+        </header>
+
+        <div class="playbook-grid">
+            <!-- MRMAC/DCMAC Playbook -->
+            <div class="playbook-card">
+                <div class="card-header">
+                    <div class="card-icon">🚀</div>
+                    <div>
+                        <div class="card-title">MRMAC/DCMAC Debug</div>
+                        <div style="color: #6c757d; font-size: 0.9rem; margin-top: 0.3rem;">Multi-Rate MAC & Data Center MAC</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Driver Resources</div>
+                    <div class="link-list">
+                        <div class="link-item">
+                            <a href="https://github.com/Xilinx/linux-xlnx" target="_blank">📦 Linux-xlnx Driver Repository</a>
+                        </div>
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add specific driver path'); return false;">📄 MRMAC Driver: drivers/net/ethernet/xilinx/</a>
+                        </div>
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add kernel docs link'); return false;">📚 Kernel Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Device Tree Resources</div>
+                    <div class="link-list">
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add DT binding path'); return false;">📋 DT Bindings: Documentation/devicetree/bindings/net/</a>
+                        </div>
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add example DTS'); return false;">📝 Example DTS Files</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Version Notes</div>
+                    <div>
+                        <span class="tag version">2020.1</span>
+                        <span class="tag version">2021.1</span>
+                        <span class="tag version">2022.1</span>
+                        <span class="tag version">2023.2</span>
+                        <span class="tag version">2024.1</span>
+                        <span class="tag version">2025.2</span>
+                    </div>
+                    <div class="note-box">
+                        <strong>⚠️ Important:</strong> Driver changes significantly between major versions. Always check version-specific documentation and known issues.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Notable Configurations</div>
+                    <div class="info-box">
+                        <div class="info-box-title">🎯 3x25G Configuration</div>
+                        <ul class="info-list">
+                            <li>Requires specific clock configuration</li>
+                            <li>Check GT lane assignments</li>
+                            <li>Verify PCS/PMA settings</li>
+                            <li>Common in Versal designs</li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-box-title">🎯 4x25G Configuration</div>
+                        <ul class="info-list">
+                            <li>Standard quad configuration</li>
+                            <li>Simpler clock setup</li>
+                            <li>Most common use case</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Common Issues</div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            🔴 Link Up Issues ▼
+                        </div>
+                        <div class="accordion-content">
+                            <div class="issue-card">
+                                <div class="issue-title">GT Configuration Mismatch</div>
+                                <div class="issue-desc">Check GT reference clock, lane polarity, and protocol settings</div>
+                                <span class="tag issue">Critical</span>
+                            </div>
+                            <div class="issue-card">
+                                <div class="issue-title">PCS/PMA Initialization</div>
+                                <div class="issue-desc">Verify PCS reset sequence and alignment marker lock</div>
+                                <span class="tag issue">Common</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            🟡 Performance Issues ▼
+                        </div>
+                        <div class="accordion-content">
+                            <div class="issue-card">
+                                <div class="issue-title">Throughput Degradation</div>
+                                <div class="issue-desc">Check for packet drops, buffer sizing, and DMA configuration</div>
+                                <span class="tag issue">Performance</span>
+                            </div>
+                            <div class="issue-card">
+                                <div class="issue-title">Interpacket Gap</div>
+                                <div class="issue-desc">Verify IPG settings in MAC configuration registers</div>
+                                <span class="tag issue">Config</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            🟢 Driver Issues ▼
+                        </div>
+                        <div class="accordion-content">
+                            <div class="issue-card">
+                                <div class="issue-title">Probe Failures</div>
+                                <div class="issue-desc">Check DT bindings, compatible strings, and resource allocation</div>
+                                <span class="tag issue">Driver</span>
+                            </div>
+                            <div class="issue-card">
+                                <div class="issue-title">Interrupt Handling</div>
+                                <div class="issue-desc">Verify interrupt mapping in DT and IRQ registration in driver</div>
+                                <span class="tag issue">Driver</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Useful Commands</div>
+                    <div class="code-snippet">
+<code># Check interface status
+ethtool eth0
+
+# View driver messages
+dmesg | grep -i mrmac
+
+# Check link status
+ip link show eth0
+
+# Monitor stats
+ethtool -S eth0</code>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Key ARs</div>
+                    <div class="link-list">
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add AR number'); return false;">AR# XXXXX - MRMAC Link Up Issues</a>
+                        </div>
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add AR number'); return false;">AR# XXXXX - 3x25G Configuration</a>
+                        </div>
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add AR number'); return false;">AR# XXXXX - Driver Update Notes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AXI 10G/25G Playbook -->
+            <div class="playbook-card">
+                <div class="card-header">
+                    <div class="card-icon">⚡</div>
+                    <div>
+                        <div class="card-title">AXI 10G/25G Debug</div>
+                        <div style="color: #6c757d; font-size: 0.9rem; margin-top: 0.3rem;">AXI Ethernet Subsystem</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Driver Resources</div>
+                    <div class="link-list">
+                        <div class="link-item">
+                            <a href="https://github.com/Xilinx/linux-xlnx" target="_blank">📦 Linux-xlnx Driver Repository</a>
+                        </div>
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add specific driver path'); return false;">📄 AXI Ethernet Driver: drivers/net/ethernet/xilinx/xilinx_axienet_main.c</a>
+                        </div>
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add DMA driver path'); return false;">📄 AXI DMA Driver: drivers/dma/xilinx/</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Device Tree Resources</div>
+                    <div class="link-list">
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add DT binding path'); return false;">📋 DT Bindings: xilinx_axienet.txt</a>
+                        </div>
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add example DTS'); return false;">📝 Example DTS with DMA Configuration</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Version Notes</div>
+                    <div>
+                        <span class="tag version">2020.1</span>
+                        <span class="tag version">2021.1</span>
+                        <span class="tag version">2022.1</span>
+                        <span class="tag version">2023.2</span>
+                        <span class="tag version">2024.1</span>
+                        <span class="tag version">2025.2</span>
+                    </div>
+                    <div class="note-box">
+                        <strong>⚠️ Critical:</strong> DMA driver updates in 2022.1+ require DT changes. Check compatibility matrix.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Clocking Notes</div>
+                    <div class="info-box">
+                        <div class="info-box-title">⏰ Clock Requirements</div>
+                        <ul class="info-list">
+                            <li><strong>AXI Lite Clock:</strong> 100 MHz (config interface)</li>
+                            <li><strong>AXI Stream Clock:</strong> 156.25 MHz (10G) / 390.625 MHz (25G)</li>
+                            <li><strong>GT Reference Clock:</strong> 156.25 MHz</li>
+                            <li><strong>DMA Clock:</strong> Match AXI Stream clock</li>
+                        </ul>
+                    </div>
+                    <div class="note-box">
+                        <strong>💡 Tip:</strong> Clock domain crossing issues are common. Verify all clock enables in Vivado ILA.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Common Issues</div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            🔴 DMA Issues ▼
+                        </div>
+                        <div class="accordion-content">
+                            <div class="issue-card">
+                                <div class="issue-title">DMA Reset Timeout</div>
+                                <div class="issue-desc">Known issue in older kernels. Patch available for timeout handling.</div>
+                                <span class="tag issue">Critical</span>
+                                <span class="tag config">Patch Available</span>
+                            </div>
+                            <div class="issue-card">
+                                <div class="issue-title">TX/RX Channel Config</div>
+                                <div class="issue-desc">Verify DMA channel allocation in DT (axistream-connected)</div>
+                                <span class="tag issue">DT</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            🟡 Device Tree Issues ▼
+                        </div>
+                        <div class="accordion-content">
+                            <div class="issue-card">
+                                <div class="issue-title">PHY Configuration</div>
+                                <div class="issue-desc">Missing or incorrect phy-handle, phy-mode properties</div>
+                                <span class="tag issue">DT</span>
+                            </div>
+                            <div class="issue-card">
+                                <div class="issue-title">Clock Properties</div>
+                                <div class="issue-desc">Ensure clocks, clock-names match driver expectations</div>
+                                <span class="tag issue">DT</span>
+                            </div>
+                            <div class="issue-card">
+                                <div class="issue-title">Memory Regions</div>
+                                <div class="issue-desc">Verify reg properties for all AXI interfaces (control, DMA)</div>
+                                <span class="tag issue">DT</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            🟢 Driver Issues ▼
+                        </div>
+                        <div class="accordion-content">
+                            <div class="issue-card">
+                                <div class="issue-title">Probe Failures</div>
+                                <div class="issue-desc">Check compatible string, clock availability, and resource mapping</div>
+                                <span class="tag issue">Driver</span>
+                            </div>
+                            <div class="issue-card">
+                                <div class="issue-title">Buffer Management</div>
+                                <div class="issue-desc">SKB allocation failures, check memory availability</div>
+                                <span class="tag issue">Driver</span>
+                            </div>
+                            <div class="issue-card">
+                                <div class="issue-title">Link Detection</div>
+                                <div class="issue-desc">PHY link status not updating, verify MDIO bus and PHY address</div>
+                                <span class="tag issue">Driver</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            🔵 Hardware Issues ▼
+                        </div>
+                        <div class="accordion-content">
+                            <div class="issue-card">
+                                <div class="issue-title">GT Configuration</div>
+                                <div class="issue-desc">Check lane assignments, polarity, and reference clock</div>
+                                <span class="tag issue">Hardware</span>
+                            </div>
+                            <div class="issue-card">
+                                <div class="issue-title">FIFO Underflow/Overflow</div>
+                                <div class="issue-desc">Check FIFO depth settings in IP configuration</div>
+                                <span class="tag issue">Hardware</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">DMA Reset Timeout Patch</div>
+                    <div class="note-box">
+                        <strong>🔧 Patch Information:</strong> The DMA reset timeout issue occurs when the DMA engine doesn't respond to reset within expected time. Apply the kernel patch or increase timeout values in driver.
+                    </div>
+                    <div class="code-snippet">
+<code># Check DMA status
+cat /sys/class/net/eth0/device/dma_status
+
+# Force DMA reset (debugging)
+echo 1 > /sys/class/net/eth0/device/dma_reset
+
+# Monitor DMA interrupts
+cat /proc/interrupts | grep dma</code>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Useful Commands</div>
+                    <div class="code-snippet">
+<code># Check interface status
+ethtool eth0
+ethtool -i eth0
+
+# View driver messages
+dmesg | grep -i axienet
+dmesg | grep -i dma
+
+# Check DMA config
+cat /sys/class/net/eth0/queues/*/dma_config
+
+# Test throughput
+iperf3 -c server_ip -t 60</code>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Key ARs</div>
+                    <div class="link-list">
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add AR number'); return false;">AR# XXXXX - AXI Ethernet DMA Timeout</a>
+                        </div>
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add AR number'); return false;">AR# XXXXX - Device Tree Configuration</a>
+                        </div>
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add AR number'); return false;">AR# XXXXX - Clocking Requirements</a>
+                        </div>
+                        <div class="link-item">
+                            <a href="#" onclick="alert('Add AR number'); return false;">AR# XXXXX - Performance Optimization</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Ethernet Debug Playbook | AMD WTS Team | Last updated: January 2026</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const allContents = document.querySelectorAll('.accordion-content');
+            const allHeaders = document.querySelectorAll('.accordion-header');
+            
+            // Close all other accordions
+            allContents.forEach(c => {
+                if (c !== content) {
+                    c.classList.remove('active');
+                }
+            });
+
+            // Update all header symbols
+            allHeaders.forEach(h => {
+                if (h !== header) {
+                    h.innerHTML = h.innerHTML.replace('▲', '▼');
+                }
+            });
+            
+            // Toggle current accordion
+            content.classList.toggle('active');
+            
+            // Update symbol
+            if (content.classList.contains('active')) {
+                header.innerHTML = header.innerHTML.replace('▼', '▲');
+            } else {
+                header.innerHTML = header.innerHTML.replace('▲', '▼');
+            }
+        }
+    </script>
+</body>
+</html>

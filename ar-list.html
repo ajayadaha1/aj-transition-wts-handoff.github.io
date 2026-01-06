@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Answer Records (ARs) - Ethernet Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #f8f9fa;
+        }
+
+        .search-box {
+            background: white;
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .search-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 1.1rem;
+            padding: 0.5rem;
+        }
+
+        .stats-bar {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        .ar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .ar-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            border-left: 5px solid #667eea;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .ar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .ar-number {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.8rem;
+        }
+
+        .ar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .ar-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .ar-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .tag.mrmac {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .tag.dcmac {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .tag.axi {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+
+        .tag.ps-gem {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .tag.driver {
+            background: #fce4ec;
+            color: #c2185b;
+        }
+
+        .tag.dt {
+            background: #e0f2f1;
+            color: #00796b;
+        }
+
+        .tag.config {
+            background: #f1f8e9;
+            color: #689f38;
+        }
+
+        .tag.performance {
+            background: #fff8e1;
+            color: #f9a825;
+        }
+
+        .tag.debug {
+            background: #ffebee;
+            color: #d32f2f;
+        }
+
+        .ar-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .ar-link:hover {
+            background: #764ba2;
+            transform: translateX(5px);
+        }
+
+        .category-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+            font-weight: 600;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: white;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .filter-buttons {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .ar-grid {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            .stats-bar {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="transition-tracker.html" class="back-button">← Back to Tracker</a>
+        
+        <header>
+            <h1>📚 Answer Records (ARs) Repository</h1>
+            <p class="subtitle">Comprehensive Ethernet Debugging & Configuration Documentation</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search ARs by number, title, or keywords...">
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number" id="totalARs">0</div>
+                <div class="stat-label">Total ARs</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="categories">0</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Coverage</div>
+            </div>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterARs('all')">All</button>
+            <button class="filter-btn" onclick="filterARs('mrmac')">MRMAC</button>
+            <button class="filter-btn" onclick="filterARs('dcmac')">DCMAC</button>
+            <button class="filter-btn" onclick="filterARs('axi')">AXI Ethernet</button>
+            <button class="filter-btn" onclick="filterARs('ps-gem')">PS-GEM</button>
+            <button class="filter-btn" onclick="filterARs('driver')">Driver Issues</button>
+            <button class="filter-btn" onclick="filterARs('dt')">Device Tree</button>
+        </div>
+
+        <!-- AR Cards will be populated here -->
+        <div id="arContainer">
+            <div class="category-section">
+                <h2 class="category-title">📋 AR List Coming Soon</h2>
+                <p style="color: #666; font-size: 1.1rem; line-height: 1.8;">
+                    This section will contain a comprehensive list of Answer Records covering:
+                </p>
+                <ul style="margin-top: 1rem; margin-left: 2rem; color: #666; line-height: 2;">
+                    <li>MRMAC/DCMAC configuration and debugging</li>
+                    <li>AXI 10G/25G Ethernet setup and troubleshooting</li>
+                    <li>PS-GEM interface configurations</li>
+                    <li>Device Tree configurations across versions</li>
+                    <li>Driver issues and patches</li>
+                    <li>Performance optimization tips</li>
+                    <li>Common issue resolutions</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Answer Records Database | AMD WTS Team | Last updated: January 2026</p>
+        </div>
+    </div>
+
+    <script>
+        // AR data structure - will be populated with actual data
+        let arData = [
+            {
+                number: "AR# 000035449",
+                title: "2022.2/2023.1 Versal PetaLinux: DTG fails to build with MRMAC IP",
+                description: "Device Tree Generator (DTG) build failures when using MRMAC IP in Versal designs with PetaLinux 2022.2/2023.1.",
+                category: "MRMAC & DCMAC",
+                tags: ["MRMAC", "DT", "PetaLinux"],
+                link: ""
+            },
+            {
+                number: "AR# 000035491",
+                title: "QSGMII uses default GT REFCLK of 125MHz and is not configurable",
+                description: "QSGMII configuration is locked to 125MHz GT reference clock with no option to configure alternative clock frequencies.",
+                category: "PS-GEM & Low-Speed Ethernet",
+                tags: ["PS-GEM", "Config", "QSGMII"],
+                link: ""
+            },
+            {
+                number: "AR# 000035618",
+                title: "2019.2 Zynq UltraScale+ MPSoC: PetaLinux TSU-Related Clock Problem in GEM0",
+                description: "Ethernet link issues at 100/10Mbps speeds due to TSU (Time Stamp Unit) related clock problems in GEM0.",
+                category: "PS-GEM & Low-Speed Ethernet",
+                tags: ["PS-GEM", "Driver", "Performance"],
+                link: ""
+            },
+            {
+                number: "AR# 000036029",
+                title: "AXI 1G/2.5G Ethernet - 2.5G Issues in Versal",
+                description: "Known issues and workarounds for 2.5G operation of AXI Ethernet Subsystem in Versal devices.",
+                category: "AXI Ethernet",
+                tags: ["AXI", "Versal", "Config"],
+                link: ""
+            },
+            {
+                number: "AR# 000036222",
+                title: "2023.1: 1G/10G/25G Ethernet Subsystem: 32 Bit PCS only - Clause 37 AN Never Complete",
+                description: "Auto-negotiation (Clause 37) fails to complete when using 32-bit PCS configuration in the Ethernet Subsystem.",
+                category: "AXI Ethernet",
+                tags: ["AXI", "Config", "Auto-Negotiation"],
+                link: ""
+            },
+            {
+                number: "AR# 000036260",
+                title: "Disable WDT in 10G/25G Ethernet",
+                description: "Instructions for disabling the Watchdog Timer (WDT) in 10G/25G Ethernet designs to prevent false timeouts.",
+                category: "AXI Ethernet",
+                tags: ["AXI", "Config", "Debug"],
+                link: ""
+            },
+            {
+                number: "AR# 000036449",
+                title: "2023.2/2024.1 AXIENET Driver mishandles device-tree attribute: xlnx,addrwidth",
+                description: "Linux AXIENET driver incorrectly processes the xlnx,addrwidth device tree attribute, causing DMA addressing issues.",
+                category: "AXI Ethernet",
+                tags: ["AXI", "Driver", "DT"],
+                link: ""
+            },
+            {
+                number: "AR# 000036641",
+                title: "10G/25G High Speed Ethernet Subsystem - Example design fails timing in 2023.2/2024.1",
+                description: "Timing closure failures in the provided example designs for 10G/25G High Speed Ethernet Subsystem.",
+                category: "AXI Ethernet",
+                tags: ["AXI", "Performance", "Timing"],
+                link: ""
+            },
+            {
+                number: "AR# 000036838",
+                title: "202X.X: EmbeddedSW LwIP UDP Perf Server stuck in Windows iperf test",
+                description: "LwIP UDP performance server hangs during iperf testing from Windows clients in embedded software designs.",
+                category: "Software & Drivers",
+                tags: ["Driver", "Performance", "Debug"],
+                link: ""
+            },
+            {
+                number: "AR# 000036847",
+                title: "VCK190 Ethernet TRD does not use LPMODE in QSFP",
+                description: "VCK190 Ethernet Target Reference Design missing LPMODE (Low Power Mode) control for QSFP modules.",
+                category: "Reference Designs",
+                tags: ["Config", "Hardware", "VCK190"],
+                link: ""
+            },
+            {
+                number: "AR# 000036943",
+                title: "2024.1/2024.2: Versal MRMAC: Timing Arcs Disabled When Using Flex Interface",
+                description: "Timing arcs are automatically disabled when using flexible interface mode in MRMAC and need manual re-enabling.",
+                category: "MRMAC & DCMAC",
+                tags: ["MRMAC", "Config", "Timing"],
+                link: ""
+            },
+            {
+                number: "AR# 000036973",
+                title: "Part 1: Building a Versal MRMAC 4x25G Baremetal Ethernet Design",
+                description: "Step-by-step guide for creating a baremetal Ethernet design using MRMAC with 4x25G configuration on Versal.",
+                category: "MRMAC & DCMAC",
+                tags: ["MRMAC", "Config", "Tutorial"],
+                link: ""
+            },
+            {
+                number: "AR# 000036974",
+                title: "Part 2: Building a Versal MRMAC 4x25G Ethernet Design - Vivado HW Design",
+                description: "Hardware design tutorial covering Vivado block design creation for MRMAC 4x25G Ethernet implementation.",
+                category: "MRMAC & DCMAC",
+                tags: ["MRMAC", "Config", "Tutorial"],
+                link: ""
+            },
+            {
+                number: "AR# 000037047",
+                title: "Issue with dynamic rate switching on VCK190 Ethernet Target Reference Design - MRMAC",
+                description: "Problems encountered when dynamically switching data rates in the VCK190 MRMAC Ethernet reference design.",
+                category: "MRMAC & DCMAC",
+                tags: ["MRMAC", "Config", "VCK190"],
+                link: ""
+            },
+            {
+                number: "AR# 000037069",
+                title: "2023.2 PS-GTR GEM Connected to a Device with Auto-Negotiation Requires a Driver Patch",
+                description: "Linux driver patch required when using PS-GTR with GEM interface connecting to devices with auto-negotiation enabled.",
+                category: "PS-GEM & Low-Speed Ethernet",
+                tags: ["PS-GEM", "Driver", "Auto-Negotiation"],
+                link: ""
+            },
+            {
+                number: "AR# 000037255",
+                title: "Versal MRMAC 2023.1 and Prior - Design Issue due to Capped Number of GPIO pins",
+                description: "GPIO pin limitations in MRMAC designs for Versal devices in 2023.1 and earlier versions causing design constraints.",
+                category: "MRMAC & DCMAC",
+                tags: ["MRMAC", "Config", "Hardware"],
+                link: ""
+            },
+            {
+                number: "AR# 000037256",
+                title: "Part 3: Building a Versal MRMAC 4x25G Ethernet Design - PetaLinux",
+                description: "PetaLinux configuration and build instructions for MRMAC 4x25G Ethernet design on Versal devices.",
+                category: "MRMAC & DCMAC",
+                tags: ["MRMAC", "PetaLinux", "Tutorial"],
+                link: ""
+            },
+            {
+                number: "AR# 000037257",
+                title: "2024.2: Versal/UltraScale+: Modifying Device Tree Compatibility for MCDMA in Ethernet Designs",
+                description: "Device tree modifications required for MCDMA compatibility in Versal and UltraScale+ Ethernet implementations.",
+                category: "Software & Drivers",
+                tags: ["DT", "Driver", "MCDMA"],
+                link: ""
+            },
+            {
+                number: "AR# 000037281",
+                title: "AXI 2.5G Ethernet SGMII mode requires AN to be disabled manually",
+                description: "Auto-negotiation must be manually disabled in device tree for proper operation of AXI 2.5G Ethernet in SGMII mode.",
+                category: "AXI Ethernet",
+                tags: ["AXI", "Config", "SGMII"],
+                link: ""
+            },
+            {
+                number: "AR# 000037561",
+                title: "1G/2.5G Ethernet PCS/PMA has wrong clock for reclock_encommaalign",
+                description: "Clock configuration error in PCS/PMA core affecting comma alignment functionality in 1G/2.5G Ethernet designs.",
+                category: "PS-GEM & Low-Speed Ethernet",
+                tags: ["Config", "Hardware", "PCS/PMA"],
+                link: ""
+            },
+            {
+                number: "AR# 000037638",
+                title: "TFTP Failures in U-Boot with Certain Ethernet Cores",
+                description: "TFTP file transfers fail in U-Boot when using specific Ethernet IP cores due to buffer management issues.",
+                category: "Software & Drivers",
+                tags: ["Driver", "U-Boot", "Debug"],
+                link: ""
+            },
+            {
+                number: "AR# 000037665",
+                title: "U-Boot GEM MACB driver issues when using DPLL clock source",
+                description: "GEM MACB driver in U-Boot has timing issues when configured to use DPLL as the clock source.",
+                category: "Software & Drivers",
+                tags: ["PS-GEM", "Driver", "U-Boot"],
+                link: ""
+            },
+            {
+                number: "AR# 000037910",
+                title: "AXI 1G/2.5G Ethernet Subsystem - Vivado Example Design - Run in Versal HW",
+                description: "Instructions for running the Vivado example design for AXI 1G/2.5G Ethernet Subsystem on Versal hardware.",
+                category: "AXI Ethernet",
+                tags: ["AXI", "Tutorial", "Versal"],
+                link: ""
+            },
+            {
+                number: "AR# 000038505",
+                title: "MRMAC - Block lock issue in Linux",
+                description: "MRMAC fails to achieve or maintain block lock in Linux due to reset sequence or configuration timing issues.",
+                category: "MRMAC & DCMAC",
+                tags: ["MRMAC", "Driver", "Debug"],
+                link: ""
+            },
+            {
+                number: "AR# 000038506",
+                title: "Ethernet - Using different subnets for multiple interfaces in Linux",
+                description: "Configuration guide for setting up multiple Ethernet interfaces on different subnets in Linux environments.",
+                category: "Software & Drivers",
+                tags: ["Config", "Linux", "Network"],
+                link: ""
+            },
+            {
+                number: "AR# 000038548",
+                title: "Versal MRMAC - How to Use Custom Number of Lanes in a System-Level Design",
+                description: "Design guidelines for implementing MRMAC with non-standard lane configurations in Versal system designs.",
+                category: "MRMAC & DCMAC",
+                tags: ["MRMAC", "Config", "Tutorial"],
+                link: ""
+            },
+            {
+                number: "AR# 000038610",
+                title: "Versal MRMAC with GTY Does Not Provide a Near-End PCS Loopback-Compatible Example Design",
+                description: "Limitation in provided example designs - no near-end PCS loopback configuration available for MRMAC with GTY.",
+                category: "MRMAC & DCMAC",
+                tags: ["MRMAC", "Config", "GTY"],
+                link: ""
+            },
+            {
+                number: "AR# 000038625",
+                title: "PetaLinux SDT Flow using XSCT",
+                description: "Guide for using System Device Tree (SDT) flow in PetaLinux with XSCT (Xilinx Software Command-Line Tool).",
+                category: "Software & Drivers",
+                tags: ["PetaLinux", "DT", "Tutorial"],
+                link: ""
+            },
+            {
+                number: "AR# 000038645",
+                title: "Linux-Compatible Ethernet: Reference Designs and Evaluation Board Details",
+                description: "Comprehensive list of Linux-compatible Ethernet reference designs with supported evaluation boards and configurations.",
+                category: "Reference Designs",
+                tags: ["Config", "Linux", "Reference"],
+                link: ""
+            },
+            {
+                number: "AR# 000038666",
+                title: "AXI_Ethernet_Buffer IP Patch to Resolve AXI_STR_RXD_VALID/LAST issue in 2020.2",
+                description: "Patch for AXI Ethernet Buffer IP to fix stream valid/last signal timing issues in version 2020.2.",
+                category: "AXI Ethernet",
+                tags: ["AXI", "Driver", "Debug"],
+                link: ""
+            },
+            {
+                number: "AR# 000038805",
+                title: "Ethernet - Support for 1000Base-KX",
+                description: "Implementation details and support information for 1000Base-KX Ethernet standard on AMD devices.",
+                category: "PS-GEM & Low-Speed Ethernet",
+                tags: ["Config", "1000Base-KX", "Standard"],
+                link: ""
+            },
+            {
+                number: "AR# 000039394",
+                title: "2023.2 VPK120 1x100G CAUI-4 DCMAC Reference Design: A DCMAC Survival Guide",
+                description: "Complete guide for implementing and debugging 100G DCMAC design with CAUI-4 interface on VPK120 board.",
+                category: "MRMAC & DCMAC",
+                tags: ["DCMAC", "Tutorial", "VPK120"],
+                link: ""
+            },
+            {
+                number: "AR# 000039613",
+                title: "2025.2 and prior - 1G/2.5G Ethernet PCS/PMA with PS-GEM running at 100M - Failure Due to Missing XDC",
+                description: "Missing timing constraints (XDC) cause failures when running 1G/2.5G PCS/PMA with PS-GEM at 100Mbps speeds.",
+                category: "PS-GEM & Low-Speed Ethernet",
+                tags: ["PS-GEM", "Config", "PCS/PMA"],
+                link: ""
+            }
+        ];
+
+        function renderARs(ars) {
+            const container = document.getElementById('arContainer');
+            
+            if (ars.length === 0) {
+                // Show the placeholder message
+                return;
+            }
+
+            container.innerHTML = '';
+            
+            // Group ARs by category if needed
+            const categories = {};
+            ars.forEach(ar => {
+                const category = ar.category || 'General';
+                if (!categories[category]) {
+                    categories[category] = [];
+                }
+                categories[category].push(ar);
+            });
+
+            // Render each category
+            Object.keys(categories).forEach(category => {
+                const section = document.createElement('div');
+                section.className = 'category-section';
+                
+                const title = document.createElement('h2');
+                title.className = 'category-title';
+                title.textContent = category;
+                section.appendChild(title);
+
+                const grid = document.createElement('div');
+                grid.className = 'ar-grid';
+
+                categories[category].forEach(ar => {
+                    const card = createARCard(ar);
+                    grid.appendChild(card);
+                });
+
+                section.appendChild(grid);
+                container.appendChild(section);
+            });
+
+            updateStats();
+        }
+
+        function createARCard(ar) {
+            const card = document.createElement('div');
+            card.className = 'ar-card';
+            card.dataset.tags = ar.tags.join(' ').toLowerCase();
+
+            card.innerHTML = `
+                <div class="ar-number">${ar.number}</div>
+                <div class="ar-title">${ar.title}</div>
+                <div class="ar-description">${ar.description}</div>
+                <div class="ar-tags">
+                    ${ar.tags.map(tag => `<span class="tag ${tag.toLowerCase().replace(/\s+/g, '-')}">${tag}</span>`).join('')}
+                </div>
+                ${ar.link ? `<a href="${ar.link}" class="ar-link" target="_blank">View AR →</a>` : ''}
+            `;
+
+            return card;
+        }
+
+        function filterARs(filterType) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter cards
+            const cards = document.querySelectorAll('.ar-card');
+            cards.forEach(card => {
+                if (filterType === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const tags = card.dataset.tags;
+                    if (tags.includes(filterType.toLowerCase())) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        function updateStats() {
+            document.getElementById('totalARs').textContent = arData.length;
+            
+            // Count unique categories
+            const categories = new Set(arData.map(ar => ar.category || 'General'));
+            document.getElementById('categories').textContent = categories.size;
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.ar-card');
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Initialize
+        renderARs(arData);
+    </script>
+</body>
+</html>
