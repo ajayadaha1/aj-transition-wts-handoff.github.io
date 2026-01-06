@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role Transition Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .resources-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+            font-weight: 600;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #667eea;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .resource-title {
+            font-weight: 600;
+            color: #764ba2;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .resource-link {
+            color: #667eea;
+            text-decoration: none;
+            word-break: break-all;
+            font-size: 0.9rem;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+
+        .tasks-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .task-item {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .task-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .task-item.completed {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+            border-left-color: #51cf66;
+            opacity: 0.8;
+        }
+
+        .task-item.completed .task-content {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .task-number {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-size: 4rem;
+            font-weight: 900;
+            opacity: 0.1;
+            color: #333;
+        }
+
+        .task-content {
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .task-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            background: rgba(255,255,255,0.5);
+        }
+
+        .done-badge {
+            background: #51cf66;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 1rem;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            margin-right: 1rem;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 50px;
+            height: 30px;
+            margin: 2rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #51cf66 0%, #40c057 100%);
+            height: 100%;
+            border-radius: 50px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: white;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Role Transition Tracker</h1>
+            <p class="subtitle">AMD Ethernet Design Hub - Knowledge Transfer & Handoff</p>
+        </header>
+
+        <div class="resources-section">
+            <h2 class="section-title">📚 Key Resources & Links</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-title">🖥️ AJ Design Hub</div>
+                    <a href="#" class="resource-link" onclick="copyToClipboard('/public/cases/ajayad/Ethernet_Design_Hub'); return false;">
+                        /public/cases/ajayad/Ethernet_Design_Hub
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-title">📋 Ethernet Config AR</div>
+                    <a href="#" class="resource-link">
+                        000034738 - AMD Ethernet Example Designs
+                    </a>
+                    <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Nan's AR with different ethernet configs for dev boards</div>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-title">🌐 AMD Versal Ethernet Repo</div>
+                    <a href="https://github.com/Xilinx-Wiki-Projects/Versal-Ethernet" class="resource-link" target="_blank">
+                        GitHub - Xilinx-Wiki-Projects/Versal-Ethernet
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-title">👨‍💻 AJ's Versal Ethernet Repo</div>
+                    <a href="https://github.com/ajayadaha1/Versal-Ethernet" class="resource-link" target="_blank">
+                        GitHub - ajayadaha1/Versal-Ethernet
+                    </a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-title">🧪 Boardfarm Resources</div>
+                    <a href="#" class="resource-link">
+                        XSJ Boardfarm - WTS-WWG - Ethernet Testing Setup
+                    </a>
+                    <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Confluence page for testing setup</div>
+                </div>
+
+                <div class="resource-card" style="border-left: 4px solid #ff6b6b;">
+                    <div class="resource-title">📄 List of Important ARs</div>
+                    <a href="ar-list.html" class="resource-link" target="_blank">
+                        View Complete AR Database →
+                    </a>
+                    <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Comprehensive collection of ARs written by AJ for Ethernet debugging and configuration</div>
+                </div>
+            </div>
+
+            <div class="note">
+                💡 <strong>Note:</strong> If having an issue with the listed interface, comment on the linked CR
+            </div>
+        </div>
+
+        <div class="tasks-section">
+            <h2 class="section-title">✅ Transition Tasks</h2>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 20%;">
+                    <span id="progressText">1 of 5 completed (20%)</span>
+                </div>
+            </div>
+
+            <div class="task-item completed" onclick="toggleTask(this)" data-completed="true">
+                <div class="task-number">1</div>
+                <div class="task-content">
+                    <strong>✓ Add gitclone command to ZCU102 GitHub repo top level README</strong>
+                    <span class="done-badge">DONE</span>
+                    <div style="margin-top: 0.8rem;">
+                        <a href="https://github.com/Xilinx-Wiki-Projects/ZCU102-Ethernet/tree/main?tab=readme-ov-file#cloning-the-repository" 
+                           style="display: inline-block; padding: 0.5rem 1rem; background: #51cf66; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem;" 
+                           onclick="event.stopPropagation();" 
+                           target="_blank">🔗 View on GitHub →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-item" onclick="toggleTask(this)" data-completed="false">
+                <div class="task-number">2</div>
+                <div class="task-content">
+                    <strong>Provide ZCU102 Ethernet Interfaces Map with PS-GEM DT Nodes</strong>
+                    <ul style="margin-left: 2rem; margin-top: 0.8rem;">
+                        <li><strong>PS-GEM → EMIO → PCS/PMA → SFP</strong> (1000base-x/sgmii)
+                            <br><small>Include PHY/MAC mode details, MDIO bus info, full DT nodes for 2020.1 → 2025.2</small>
+                        </li>
+                        <li style="margin-top: 0.5rem;"><strong>PS-GEM → MIO → RGMII → TI PHY DPxx</strong> (1000base-t)
+                            <br><small>Include MDIO bus info, full DT nodes for 2020.1 → 2025.2</small>
+                        </li>
+                        <li style="margin-top: 0.5rem;"><strong>PS-GEM → PS-GTR</strong> (1000base-x/sgmii)
+                            <br><small>Build BSP for multiple versions and decompile DTB</small>
+                        </li>
+                        <li style="margin-top: 0.5rem;"><strong>Other dev boards:</strong> KR260 consideration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task-item" onclick="toggleTask(this)" data-completed="false">
+                <div class="task-number">3</div>
+                <div class="task-content">
+                    <strong>MRMAC/DCMAC Debug Playbook</strong>
+                    <div style="margin-left: 2rem; margin-top: 0.8rem;">
+                        Create 1-2 page cheat sheet including:
+                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                            <li>Driver links</li>
+                            <li>DT links</li>
+                            <li>Useful ARs</li>
+                            <li>Version differences/notes</li>
+                            <li>Cases of note (e.g., 3x25 config)</li>
+                            <li>Main issue types/details & driver issues</li>
+                        </ul>
+                        <a href="playbook.html" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;" onclick="event.stopPropagation();">📖 View Playbook →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-item" onclick="toggleTask(this)" data-completed="false">
+                <div class="task-number">4</div>
+                <div class="task-content">
+                    <strong>AXI 10G/25G Debug Playbook</strong>
+                    <div style="margin-left: 2rem; margin-top: 0.8rem;">
+                        Create 1-2 page cheat sheet including:
+                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                            <li>Driver links</li>
+                            <li>DT links</li>
+                            <li>Useful ARs</li>
+                            <li>Version differences/notes</li>
+                            <li>Cases of note</li>
+                            <li>Main issue types/details</li>
+                            <li>Driver issues</li>
+                            <li>DT issues</li>
+                            <li>Clocking notes</li>
+                            <li>DMA reset timeout patch</li>
+                        </ul>
+                        <a href="playbook.html" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;" onclick="event.stopPropagation();">📖 View Playbook →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-item completed" onclick="toggleTask(this)" data-completed="true">
+                <div class="task-number">5</div>
+                <div class="task-content">
+                    <strong>✓ Archive Jenkins ZCU102 Update Automation Notes</strong>
+                    <span class="done-badge">DONE</span>
+                    <div style="margin-left: 2rem; margin-top: 0.8rem;">
+                        Archive in AJ's GitHub repo with:
+                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                            <li>✓ Extra notes for handoff</li>
+                            <li>✓ README file for future maintainers</li>
+                            <li>✓ Jenkins PowerPoint presentation</li>
+                        </ul>
+                        <div style="margin-top: 1rem;">
+                            <a href="https://github.com/ajayadaha1/JenkinsFiles-For-Ethernet-Upgrade" 
+                               style="display: inline-block; padding: 0.5rem 1rem; background: #51cf66; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem; margin-right: 0.5rem; margin-bottom: 0.5rem;" 
+                               onclick="event.stopPropagation();" 
+                               target="_blank">🔗 View Repo →</a>
+                            <a href="JenkinsFiles-For-Ethernet-Upgrade/README.md" 
+                               style="display: inline-block; padding: 0.5rem 1rem; background: #51cf66; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem; margin-right: 0.5rem; margin-bottom: 0.5rem;" 
+                               onclick="event.stopPropagation();" 
+                               target="_blank">📖 README →</a>
+                            <a href="https://github.com/ajayadaha1/JenkinsFiles-For-Ethernet-Upgrade/blob/main/Jenkins%20Automation%20for%20WTS.pptx" 
+                               style="display: inline-block; padding: 0.5rem 1rem; background: #51cf66; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;" 
+                               onclick="event.stopPropagation();" 
+                               target="_blank">📊 PowerPoint →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Last updated: January 2026 | Track your progress and stay organized 💼</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleTask(element) {
+            const isCompleted = element.dataset.completed === 'true';
+            element.dataset.completed = !isCompleted;
+            element.classList.toggle('completed');
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const tasks = document.querySelectorAll('.task-item');
+            const completedTasks = document.querySelectorAll('.task-item.completed');
+            const percentage = Math.round((completedTasks.length / tasks.length) * 100);
+            
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            progressFill.style.width = percentage + '%';
+            progressText.textContent = `${completedTasks.length} of ${tasks.length} completed (${percentage}%)`;
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Path copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+
+        // Initialize progress on load
+        updateProgress();
+    </script>
+</body>
+</html>
