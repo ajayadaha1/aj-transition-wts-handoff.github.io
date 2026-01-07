@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,315 +18,711 @@
             <p class="subtitle">AMD Ethernet Design Hub - Knowledge Transfer & Handoff</p>
         </header>
 
-        <div class="resources-section">
-            <h2 class="section-title">📚 Key Resources & Links</h2>
-            <div class="resource-grid">
-                <div class="resource-card">
-                    <div class="resource-title">🖥️ AJ Design Hub</div>
-                    <a href="#" class="resource-link" onclick="copyToClipboard('/public/cases/ajayad/Ethernet_Design_Hub'); return false;">
-                        /public/cases/ajayad/Ethernet_Design_Hub
-                    </a>
+        <!-- Information Section -->
+        <div class="info-banner" style="border-radius: 20px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.3); position: relative; overflow: hidden;">
+            <!-- Decorative elements -->
+            <div class="info-decoration" style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; border-radius: 50%; z-index: 0;"></div>
+            <div class="info-decoration" style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; border-radius: 50%; z-index: 0;"></div>
+            
+            <div style="position: relative; z-index: 1;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div style="font-size: 3rem; animation: pulse 2s ease-in-out infinite;">ℹ️</div>
+                    <h2 class="info-title" style="font-size: 2.2rem; margin: 0; font-weight: 700;">About This Documentation</h2>
+                </div>
+                
+                <div class="info-content-box" style="backdrop-filter: blur(10px); border-radius: 15px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                    <p style="font-size: 1.15rem; line-height: 1.8; margin: 0;">
+                        This documentation hub serves as a comprehensive knowledge transfer and handoff resource for the <strong>AMD Ethernet Design Hub</strong>. 
+                        It contains essential information, assets, and resources created and curated by <strong style="color: #ffd700;">AJ Dahal</strong> 
+                        <span style="opacity: 0.9; font-size: 0.95rem;">(Sr. Product Application Engineer - WTS-WWG)</span>.
+                    </p>
                 </div>
 
-                <div class="resource-card">
-                    <div class="resource-title">📋 Ethernet Config AR</div>
-                    <a href="#" class="resource-link">
-                        000034738 - AMD Ethernet Example Designs
-                    </a>
-                    <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Nan's AR with different ethernet configs for dev boards</div>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-title">🌐 AMD Versal Ethernet Repo</div>
-                    <a href="https://github.com/Xilinx-Wiki-Projects/Versal-Ethernet" class="resource-link" target="_blank">
-                        GitHub - Xilinx-Wiki-Projects/Versal-Ethernet
-                    </a>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-title">👨‍💻 AJ's Versal Ethernet Repo</div>
-                    <a href="https://github.com/ajayadaha1/Versal-Ethernet" class="resource-link" target="_blank">
-                        GitHub - ajayadaha1/Versal-Ethernet
-                    </a>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-title">🧪 Boardfarm Resources</div>
-                    <a href="https://amd.atlassian.net/wiki/spaces/~ajayad/pages/500927983/XSJ+Boardfarm+-+WTS-WWG+-+Ethernet+Testing+Setup" class="resource-link" target="_blank">
-                        XSJ Boardfarm - WTS-WWG - Ethernet Testing Setup
-                    </a>
-                    <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Confluence page for testing setup</div>
-                    <div class="note" style="margin-top: 1rem; padding: 0.8rem; font-size: 0.85rem;">
-                        💡 <strong>Note:</strong> If having an issue with the listed interface, comment on the linked CR
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem;">
+                    <!-- Included Resources Card -->
+                    <div class="info-card" style="backdrop-filter: blur(10px); border-radius: 12px; padding: 1.3rem; transition: all 0.3s;">
+                        <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem;">
+                            <div style="font-size: 2rem;">📦</div>
+                            <h3 style="margin: 0; font-size: 1.2rem; font-weight: 600;">Included Resources</h3>
+                        </div>
+                        <p style="margin: 0; line-height: 1.7; font-size: 0.95rem; opacity: 0.95;">
+                            Reference designs, debugging playbooks, Answer Records (ARs), device tree configurations, 
+                            driver patches, Jenkins automation workflows, and comprehensive testing documentation.
+                        </p>
                     </div>
-                </div>
 
-                <div class="resource-card" style="border-left: 4px solid #ff6b6b;">
-                    <div class="resource-title">📄 List of Important ARs</div>
-                    <a href="ar-list.html" class="resource-link" target="_blank">
-                        View Complete AR Database →
-                    </a>
-                    <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Comprehensive collection of ARs written by AJ for Ethernet debugging and configuration</div>
+                    <!-- Purpose Card -->
+                    <div class="info-card" style="backdrop-filter: blur(10px); border-radius: 12px; padding: 1.3rem; transition: all 0.3s;">
+                        <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem;">
+                            <div style="font-size: 2rem;">🎯</div>
+                            <h3 style="margin: 0; font-size: 1.2rem; font-weight: 600;">Purpose</h3>
+                        </div>
+                        <p style="margin: 0; line-height: 1.7; font-size: 0.95rem; opacity: 0.95;">
+                            Ensure seamless continuity of Ethernet-related projects, provide quick access to critical resources, 
+                            and maintain institutional knowledge for future team members.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <style>
+            /* Info Banner Styles - Light Mode */
+            .info-banner {
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+                color: white;
+            }
+
+            .info-decoration {
+                background: rgba(255,255,255,0.1);
+            }
+
+            .info-title {
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            }
+
+            .info-content-box {
+                background: rgba(255,255,255,0.15);
+                border: 1px solid rgba(255,255,255,0.2);
+            }
+
+            .info-card {
+                background: rgba(255,255,255,0.12);
+                border: 1px solid rgba(255,255,255,0.2);
+            }
+
+            /* Info Banner Styles - Dark Mode */
+            body.dark-mode .info-banner {
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+                color: var(--text-color);
+            }
+
+            body.dark-mode .info-decoration {
+                background: rgba(102, 126, 234, 0.15);
+            }
+
+            body.dark-mode .info-title {
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            }
+
+            body.dark-mode .info-content-box {
+                background: rgba(102, 126, 234, 0.1);
+                border: 1px solid rgba(102, 126, 234, 0.3);
+            }
+
+            body.dark-mode .info-card {
+                background: rgba(102, 126, 234, 0.08);
+                border: 1px solid rgba(102, 126, 234, 0.25);
+            }
+
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+            }
+
+            @keyframes confettiFall {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(100vh) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+
+            @keyframes popIn {
+                0% {
+                    transform: translateX(-50%) scale(0);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateX(-50%) scale(1);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes popOut {
+                0% {
+                    transform: translateX(-50%) scale(1);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateX(-50%) scale(0.8);
+                    opacity: 0;
+                }
+            }
+
+            /* Task Item Styles */
+            .task-item {
+                background: var(--card-bg);
+                border: 3px solid rgba(102, 126, 234, 0.4);
+                border-radius: 15px;
+                padding: 1.8rem;
+                transition: all 0.3s;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+            }
+
+            .task-item:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(102, 126, 234, 0.25);
+            }
+
+            .task-item.completed {
+                background: linear-gradient(135deg, rgba(81, 207, 102, 0.15) 0%, rgba(64, 192, 87, 0.15) 100%) !important;
+                border: 3px solid #51cf66 !important;
+                box-shadow: 0 6px 20px rgba(81, 207, 102, 0.2) !important;
+            }
+
+            .task-number {
+                min-width: 45px;
+                height: 45px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border-radius: 12px;
+                font-weight: 700;
+                font-size: 1.2rem;
+                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            }
+
+            .task-item.completed .task-number {
+                background: linear-gradient(135deg, #51cf66 0%, #40c057 100%) !important;
+                box-shadow: 0 4px 12px rgba(81, 207, 102, 0.3) !important;
+            }
+
+            .done-badge {
+                position: absolute;
+                top: 1.5rem;
+                right: 1.5rem;
+                background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+                color: white;
+                padding: 0.4rem 1rem;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 700;
+                box-shadow: 0 2px 8px rgba(81, 207, 102, 0.3);
+                z-index: 10;
+            }
+
+            /* Dark Mode Task Styles */
+            body.dark-mode .task-item.completed {
+                background: linear-gradient(135deg, rgba(81, 207, 102, 0.2) 0%, rgba(64, 192, 87, 0.2) 100%) !important;
+                border: 3px solid rgba(81, 207, 102, 0.5) !important;
+                box-shadow: 0 6px 20px rgba(81, 207, 102, 0.25) !important;
+            }
+
+            body.dark-mode .task-item.completed .task-number {
+                background: linear-gradient(135deg, #51cf66 0%, #40c057 100%) !important;
+                box-shadow: 0 4px 12px rgba(81, 207, 102, 0.4) !important;
+            }
+
+            /* Dark Mode Inner Cards - keep visible with subtle styling */
+            body.dark-mode .task-item.completed div[style*="background: rgba(255, 255, 255"] {
+                background: rgba(81, 207, 102, 0.08) !important;
+                border-color: rgba(81, 207, 102, 0.3) !important;
+            }
+
+            body.dark-mode .task-item.completed div[style*="background: linear-gradient(135deg, rgba(102, 126, 234"] {
+                background: rgba(81, 207, 102, 0.08) !important;
+                border-left-color: rgba(81, 207, 102, 0.5) !important;
+            }
+
+            /* Button Glow Effect */
+            .task-item a[style*="background: linear-gradient"],
+            a[style*="background: linear-gradient"] {
+                position: relative;
+                transition: all 0.3s ease;
+            }
+
+            .task-item a[style*="background: linear-gradient"]:hover,
+            a[style*="background: linear-gradient"]:hover {
+                transform: translateY(-2px);
+                filter: brightness(1.1);
+            }
+
+            /* Green button glow for completed tasks */
+            .task-item.completed a[style*="background: linear-gradient"]:hover {
+                box-shadow: 0 0 20px rgba(81, 207, 102, 0.8), 
+                           0 0 40px rgba(81, 207, 102, 0.4),
+                           0 4px 12px rgba(81, 207, 102, 0.3) !important;
+            }
+
+            /* Purple button glow for incomplete tasks */
+            .task-item:not(.completed) a[style*="background: linear-gradient"]:hover {
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.8), 
+                           0 0 40px rgba(102, 126, 234, 0.4),
+                           0 4px 12px rgba(102, 126, 234, 0.3) !important;
+            }
+
+            /* PDF Container - prevent click propagation */
+            .pdf-container {
+                pointer-events: auto;
+                position: relative;
+                z-index: 10;
+                width: 100%;
+                display: block;
+                clear: both;
+            }
+
+            .pdf-container iframe {
+                pointer-events: auto;
+            }
+        </style>
+
+        <!-- Key Resources & Links Section -->
+        <div class="resources-section" style="background: var(--card-bg); border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+            <div style="text-align: center; margin-bottom: 2.5rem;">
+                <h2 style="font-size: 2.5rem; margin: 0 0 0.5rem 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">
+                    📚 Key Resources & Links
+                </h2>
+                <p style="color: var(--text-color); opacity: 0.8; font-size: 1.05rem;">Essential tools, repositories, and documentation</p>
+            </div>
+
+            <div class="resource-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+                <!-- AJ's Versal Ethernet Repo - Featured #1 -->
+                <div class="resource-card" style="background: var(--card-bg); border: 4px solid #2196f3; border-radius: 15px; padding: 1.5rem; transition: all 0.3s; position: relative; overflow: hidden; box-shadow: 0 8px 30px rgba(33, 150, 243, 0.3);">
+                    <div style="position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, #2196f3 0%, #21cbf3 100%); color: white; padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700; z-index: 2; box-shadow: 0 2px 8px rgba(33, 150, 243, 0.4);">FEATURED</div>
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 4rem; opacity: 0.08;">💻</div>
+                    <div class="resource-title" style="font-size: 1.3rem; font-weight: 700; color: #1565c0; margin-bottom: 1rem; position: relative; z-index: 1;">💻 AJ's Versal Ethernet Repo</div>
+                    <a href="https://github.com/ajayadaha1/Versal-Ethernet" class="resource-link" target="_blank" style="display: block; background: linear-gradient(135deg, rgba(33, 150, 243, 0.25) 0%, rgba(30, 136, 229, 0.25) 100%); padding: 0.8rem; border-radius: 8px; color: var(--text-color); text-decoration: none; font-weight: 600; position: relative; z-index: 1; transition: all 0.3s; border: 1px solid rgba(33, 150, 243, 0.5);">
+                        GitHub - ajayadaha1/Versal-Ethernet →
+                    </a>
+                    <div style="margin-top: 0.8rem; font-size: 0.85rem; color: #888; position: relative; z-index: 1;">Comprehensive Versal Ethernet examples and configurations</div>
+                </div>
+
+                <!-- Boardfarm Resources - Featured #2 -->
+                <div class="resource-card" style="background: var(--card-bg); border: 4px solid #9c27b0; border-radius: 15px; padding: 1.5rem; transition: all 0.3s; position: relative; overflow: hidden; box-shadow: 0 8px 30px rgba(156, 39, 176, 0.3);">
+                    <div style="position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, #9c27b0 0%, #e91e63 100%); color: white; padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700; z-index: 2; box-shadow: 0 2px 8px rgba(156, 39, 176, 0.4);">FEATURED</div>
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 4rem; opacity: 0.08;">🧪</div>
+                    <div class="resource-title" style="font-size: 1.3rem; font-weight: 700; color: #6a1b9a; margin-bottom: 1rem; position: relative; z-index: 1;">🧪 Boardfarm Resources</div>
+                    <a href="https://amd.atlassian.net/wiki/spaces/~ajayad/pages/500927983/XSJ+Boardfarm+-+WTS-WWG+-+Ethernet+Testing+Setup" class="resource-link" target="_blank" style="display: block; background: linear-gradient(135deg, rgba(156, 39, 176, 0.25) 0%, rgba(123, 31, 162, 0.25) 100%); padding: 0.8rem; border-radius: 8px; color: var(--text-color); text-decoration: none; font-weight: 600; position: relative; z-index: 1; transition: all 0.3s; border: 1px solid rgba(156, 39, 176, 0.5);">
+                        XSJ Boardfarm - WTS-WWG - Ethernet Testing Setup →
+                    </a>
+                    <div style="margin-top: 0.8rem; font-size: 0.85rem; color: #888; position: relative; z-index: 1;">Confluence page for testing setup</div>
+                    <div style="margin-top: 1rem; padding: 0.8rem; background: linear-gradient(135deg, rgba(156, 39, 176, 0.15) 0%, rgba(123, 31, 162, 0.15) 100%); border-radius: 8px; font-size: 0.85rem; color: var(--text-color); position: relative; z-index: 1; border-left: 4px solid #9c27b0;">
+                        💡 <strong>Note:</strong> If having an issue with the listed interface, comment on the linked CR
+                    </div>
+                </div>
+
+                <!-- Debug Playbook - Featured #3 -->
+                <div class="resource-card" style="background: var(--card-bg); border: 4px solid #4caf50; border-radius: 15px; padding: 1.5rem; transition: all 0.3s; position: relative; overflow: hidden; box-shadow: 0 8px 30px rgba(76, 175, 80, 0.3);">
+                    <div style="position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%); color: white; padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700; z-index: 2; box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);">FEATURED</div>
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 4rem; opacity: 0.08;">📖</div>
+                    <div class="resource-title" style="font-size: 1.3rem; font-weight: 700; color: #2e7d32; margin-bottom: 1rem; position: relative; z-index: 1;">📖 Ethernet Debug Playbook</div>
+                    <a href="playbook.html" class="resource-link" target="_blank" style="display: block; background: linear-gradient(135deg, rgba(76, 175, 80, 0.25) 0%, rgba(67, 160, 71, 0.25) 100%); padding: 0.8rem; border-radius: 8px; color: var(--text-color); text-decoration: none; font-weight: 600; position: relative; z-index: 1; transition: all 0.3s; border: 1px solid rgba(76, 175, 80, 0.5);">
+                        View Debug Playbook →
+                    </a>
+                    <div style="margin-top: 0.8rem; font-size: 0.85rem; color: #888; position: relative; z-index: 1;">Quick reference guide for MRMAC/DCMAC & 10G/25G Ethernet Subsystem debugging</div>
+                </div>
+
+                <!-- ZCU102 Ethernet Repo - Featured #4 -->
+                <div class="resource-card" style="background: var(--card-bg); border: 4px solid #ff5722; border-radius: 15px; padding: 1.5rem; transition: all 0.3s; position: relative; overflow: hidden; box-shadow: 0 8px 30px rgba(255, 87, 34, 0.3);">
+                    <div style="position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, #ff5722 0%, #f44336 100%); color: white; padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700; z-index: 2; box-shadow: 0 2px 8px rgba(255, 87, 34, 0.4);">FEATURED</div>
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 4rem; opacity: 0.08;">⚡</div>
+                    <div class="resource-title" style="font-size: 1.3rem; font-weight: 700; color: #d84315; margin-bottom: 1rem; position: relative; z-index: 1;">⚡ ZCU102 Ethernet Repo</div>
+                    <a href="https://github.com/ajayadaha1/ZCU102-Ethernet" class="resource-link" target="_blank" style="display: block; background: linear-gradient(135deg, rgba(255, 87, 34, 0.25) 0%, rgba(244, 67, 54, 0.25) 100%); padding: 0.8rem; border-radius: 8px; color: var(--text-color); text-decoration: none; font-weight: 600; position: relative; z-index: 1; transition: all 0.3s; border: 1px solid rgba(255, 87, 34, 0.5);">
+                        GitHub - ajayadaha1/ZCU102-Ethernet →
+                    </a>
+                    <div style="margin-top: 0.8rem; font-size: 0.85rem; color: #888; position: relative; z-index: 1;">Complete ZCU102 Ethernet examples (replaces XAPP1305)</div>
+                </div>
+
+                <!-- AR Database - Featured #5 -->
+                <div class="resource-card" style="background: var(--card-bg); border: 4px solid #f44336; border-radius: 15px; padding: 1.5rem; transition: all 0.3s; position: relative; overflow: hidden; box-shadow: 0 8px 30px rgba(244, 67, 54, 0.3);">
+                    <div style="position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, #f44336 0%, #e91e63 100%); color: white; padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700; z-index: 2; box-shadow: 0 2px 8px rgba(244, 67, 54, 0.4);">FEATURED</div>
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 4rem; opacity: 0.08;">📄</div>
+                    <div class="resource-title" style="font-size: 1.3rem; font-weight: 700; color: #c62828; margin-bottom: 1rem; position: relative; z-index: 1;">📄 List of Important ARs</div>
+                    <a href="ar-list.html" class="resource-link" target="_blank" style="display: block; background: linear-gradient(135deg, rgba(244, 67, 54, 0.25) 0%, rgba(229, 57, 53, 0.25) 100%); padding: 0.8rem; border-radius: 8px; color: var(--text-color); text-decoration: none; font-weight: 600; position: relative; z-index: 1; transition: all 0.3s; border: 1px solid rgba(244, 67, 54, 0.5);">
+                        View Complete AR Database →
+                    </a>
+                    <div style="margin-top: 0.8rem; font-size: 0.85rem; color: #888; position: relative; z-index: 1;">Comprehensive collection of ARs written by AJ for Ethernet debugging and configuration</div>
+                </div>
+
+                <!-- Ethernet Config AR -->
+                <div class="resource-card" style="background: var(--card-bg); border: 3px solid #ff9800; border-radius: 15px; padding: 1.5rem; transition: all 0.3s; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(255, 152, 0, 0.2);">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 4rem; opacity: 0.08;">📋</div>
+                    <div class="resource-title" style="font-size: 1.3rem; font-weight: 700; color: #f57c00; margin-bottom: 1rem; position: relative; z-index: 1;">📋 Ethernet Config AR</div>
+                    <a href="#" class="resource-link" style="display: block; background: linear-gradient(135deg, rgba(255, 193, 7, 0.2) 0%, rgba(255, 152, 0, 0.2) 100%); padding: 0.8rem; border-radius: 8px; color: var(--text-color); text-decoration: none; font-weight: 600; position: relative; z-index: 1; transition: all 0.3s; border: 1px solid rgba(255, 152, 0, 0.4);">
+                        000034738 - AMD Ethernet Example Designs
+                    </a>
+                    <div style="margin-top: 0.8rem; font-size: 0.85rem; color: #888; position: relative; z-index: 1;">Nan's AR with different ethernet configs for dev boards</div>
+                </div>
+
+                <!-- AMD Versal Ethernet Repo -->
+                <div class="resource-card" style="background: var(--card-bg); border: 3px solid #4caf50; border-radius: 15px; padding: 1.5rem; transition: all 0.3s; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 4rem; opacity: 0.08;">🌐</div>
+                    <div class="resource-title" style="font-size: 1.3rem; font-weight: 700; color: #2e7d32; margin-bottom: 1rem; position: relative; z-index: 1;">🌐 AMD Versal Ethernet Repo</div>
+                    <a href="https://github.com/Xilinx-Wiki-Projects/Versal-Ethernet" class="resource-link" target="_blank" style="display: block; background: linear-gradient(135deg, rgba(76, 175, 80, 0.2) 0%, rgba(56, 142, 60, 0.2) 100%); padding: 0.8rem; border-radius: 8px; color: var(--text-color); text-decoration: none; font-weight: 600; position: relative; z-index: 1; transition: all 0.3s; border: 1px solid rgba(76, 175, 80, 0.4);">
+                        GitHub - Xilinx-Wiki-Projects/Versal-Ethernet →
+                    </a>
+                    <div style="margin-top: 0.8rem; font-size: 0.85rem; color: #888; position: relative; z-index: 1;">Official AMD Versal Ethernet reference designs</div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .resource-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 30px rgba(0,0,0,0.15) !important;
+            }
+            .resource-card a:hover {
+                transform: translateX(5px);
+            }
+        </style>
+
         <!-- Ethernet Reference Designs Section -->
-        <div class="ethernet-designs-section">
-            <h2 class="section-title">🔧 Ethernet Reference Designs</h2>
-            <p style="text-align: center; color: var(--text-color); margin-bottom: 2rem; font-size: 1.1rem;">
-                Complete collection of Ethernet design examples and implementations
-            </p>
+        <div class="ethernet-designs-section" style="background: var(--card-bg); border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+            <div style="text-align: center; margin-bottom: 2.5rem;">
+                <h2 style="font-size: 2.5rem; margin: 0 0 0.5rem 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">
+                    🔧 Ethernet Reference Designs
+                </h2>
+                <p style="color: var(--text-color); opacity: 0.8; font-size: 1.05rem;">Complete collection of Ethernet design examples and implementations</p>
+                <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
+                    <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Versal Designs</span>
+                    <span style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Zynq UltraScale+ Designs</span>
+                </div>
+            </div>
 
             <!-- Versal Designs -->
-            <div class="design-category">
-                <h3 class="category-header">
-                    <span class="category-icon">🚀</span>
-                    <span>Versal Designs</span>
+            <div class="design-category" style="margin-bottom: 2rem;">
+                <h3 class="category-header" onclick="toggleDesignCategory(this)" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); border: 2px solid #667eea; border-radius: 12px; padding: 1.2rem; cursor: pointer; user-select: none; display: flex; align-items: center; gap: 1rem; transition: all 0.3s; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);">
+                    <span class="category-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; color: white;">🚀</span>
+                    <span style="flex: 1; font-size: 1.4rem; font-weight: 700; color: #667eea;">Versal Designs</span>
+                    <span style="background: #667eea; color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">7 Projects</span>
+                    <span class="toggle-icon" style="font-size: 1.2rem; transition: transform 0.3s; color: #667eea;">▼</span>
                 </h3>
-                <div class="design-list">
-                    <a href="https://github.com/ajayadaha1/Versal-Ethernet" class="design-item" target="_blank">
-                        <div class="design-icon">📦</div>
-                        <div class="design-info">
-                            <div class="design-name">Versal-Ethernet</div>
-                            <div class="design-desc">Comprehensive Versal Ethernet examples and configurations ⭐ 2</div>
+                <div class="design-list" style="display: none; margin-top: 1rem; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1rem;">
+                    <a href="https://github.com/ajayadaha1/Versal-Ethernet" class="design-item" target="_blank" style="background: var(--card-bg); border: 2px solid #e3f2fd; border-left: 4px solid #667eea; border-radius: 12px; padding: 1.2rem; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div class="design-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 10px; flex-shrink: 0;">📦</div>
+                        <div class="design-info" style="flex: 1;">
+                            <div class="design-name" style="font-weight: 700; font-size: 1.1rem; color: var(--text-color); margin-bottom: 0.3rem;">Versal-Ethernet</div>
+                            <div class="design-desc" style="color: #888; font-size: 0.9rem;">Comprehensive Versal Ethernet examples and configurations ⭐ 2</div>
                         </div>
-                        <div class="design-arrow">→</div>
+                        <div class="design-arrow" style="font-size: 1.5rem; color: #667eea; transition: transform 0.3s;">→</div>
                     </a>
-                    <a href="https://github.com/ajayadaha1/vck190-ethernet-trd-2025-1" class="design-item" target="_blank">
-                        <div class="design-icon">📦</div>
-                        <div class="design-info">
-                            <div class="design-name">VCK190 Ethernet TRD 2025.1</div>
-                            <div class="design-desc">Latest VCK190 Ethernet Target Reference Design</div>
+                    <a href="https://github.com/ajayadaha1/vck190-ethernet-trd-2025-1" class="design-item" target="_blank" style="background: var(--card-bg); border: 2px solid #e3f2fd; border-left: 4px solid #667eea; border-radius: 12px; padding: 1.2rem; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div class="design-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 10px; flex-shrink: 0;">📦</div>
+                        <div class="design-info" style="flex: 1;">
+                            <div class="design-name" style="font-weight: 700; font-size: 1.1rem; color: var(--text-color); margin-bottom: 0.3rem;">VCK190 Ethernet TRD 2025.1</div>
+                            <div class="design-desc" style="color: #888; font-size: 0.9rem;">Latest VCK190 Ethernet Target Reference Design</div>
                         </div>
-                        <div class="design-arrow">→</div>
+                        <div class="design-arrow" style="font-size: 1.5rem; color: #667eea; transition: transform 0.3s;">→</div>
                     </a>
-                    <a href="https://github.com/ajayadaha1/VPK180-3x25G-MRMAC" class="design-item" target="_blank">
-                        <div class="design-icon">📦</div>
-                        <div class="design-info">
-                            <div class="design-name">VPK180 3x25G MRMAC</div>
-                            <div class="design-desc">Triple 25G MRMAC implementation for VPK180</div>
+                    <a href="https://github.com/ajayadaha1/VPK180-3x25G-MRMAC" class="design-item" target="_blank" style="background: var(--card-bg); border: 2px solid #e3f2fd; border-left: 4px solid #667eea; border-radius: 12px; padding: 1.2rem; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div class="design-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 10px; flex-shrink: 0;">📦</div>
+                        <div class="design-info" style="flex: 1;">
+                            <div class="design-name" style="font-weight: 700; font-size: 1.1rem; color: var(--text-color); margin-bottom: 0.3rem;">VPK180 3x25G MRMAC</div>
+                            <div class="design-desc" style="color: #888; font-size: 0.9rem;">Triple 25G MRMAC implementation for VPK180</div>
                         </div>
-                        <div class="design-arrow">→</div>
+                        <div class="design-arrow" style="font-size: 1.5rem; color: #667eea; transition: transform 0.3s;">→</div>
                     </a>
-                    <a href="https://github.com/ajayadaha1/VPK120-DCMAC-1x100G-2023-2" class="design-item" target="_blank">
-                        <div class="design-icon">📦</div>
-                        <div class="design-info">
-                            <div class="design-name">VPK120 DCMAC 1x100G</div>
-                            <div class="design-desc">100G DCMAC design for VPK120 (2023.2)</div>
+                    <a href="https://github.com/ajayadaha1/VPK120-DCMAC-1x100G-2023-2" class="design-item" target="_blank" style="background: var(--card-bg); border: 2px solid #e3f2fd; border-left: 4px solid #667eea; border-radius: 12px; padding: 1.2rem; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div class="design-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 10px; flex-shrink: 0;">📦</div>
+                        <div class="design-info" style="flex: 1;">
+                            <div class="design-name" style="font-weight: 700; font-size: 1.1rem; color: var(--text-color); margin-bottom: 0.3rem;">VPK120 DCMAC 1x100G</div>
+                            <div class="design-desc" style="color: #888; font-size: 0.9rem;">100G DCMAC design for VPK120 (2023.2)</div>
                         </div>
-                        <div class="design-arrow">→</div>
+                        <div class="design-arrow" style="font-size: 1.5rem; color: #667eea; transition: transform 0.3s;">→</div>
                     </a>
-                    <a href="https://github.com/ajayadaha1/VCK190-1G-Example-Block-Design" class="design-item" target="_blank">
-                        <div class="design-icon">📦</div>
-                        <div class="design-info">
-                            <div class="design-name">VCK190 1G Example Block Design</div>
-                            <div class="design-desc">1G Ethernet block design example for VCK190</div>
+                    <a href="https://github.com/ajayadaha1/VCK190-1G-Example-Block-Design" class="design-item" target="_blank" style="background: var(--card-bg); border: 2px solid #e3f2fd; border-left: 4px solid #667eea; border-radius: 12px; padding: 1.2rem; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div class="design-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 10px; flex-shrink: 0;">📦</div>
+                        <div class="design-info" style="flex: 1;">
+                            <div class="design-name" style="font-weight: 700; font-size: 1.1rem; color: var(--text-color); margin-bottom: 0.3rem;">VCK190 1G Example Block Design</div>
+                            <div class="design-desc" style="color: #888; font-size: 0.9rem;">1G Ethernet block design example for VCK190</div>
                         </div>
-                        <div class="design-arrow">→</div>
+                        <div class="design-arrow" style="font-size: 1.5rem; color: #667eea; transition: transform 0.3s;">→</div>
                     </a>
-                    <a href="https://github.com/ajayadaha1/2023_2_VCK190_2p5g_SFP0_1g_SFP1" class="design-item" target="_blank">
-                        <div class="design-icon">📦</div>
-                        <div class="design-info">
-                            <div class="design-name">VCK190 2.5G + 1G Dual SFP</div>
-                            <div class="design-desc">Multi-speed SFP configuration (2.5G + 1G)</div>
+                    <a href="https://github.com/ajayadaha1/2023_2_VCK190_2p5g_SFP0_1g_SFP1" class="design-item" target="_blank" style="background: var(--card-bg); border: 2px solid #e3f2fd; border-left: 4px solid #667eea; border-radius: 12px; padding: 1.2rem; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div class="design-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 10px; flex-shrink: 0;">📦</div>
+                        <div class="design-info" style="flex: 1;">
+                            <div class="design-name" style="font-weight: 700; font-size: 1.1rem; color: var(--text-color); margin-bottom: 0.3rem;">VCK190 2.5G + 1G Dual SFP</div>
+                            <div class="design-desc" style="color: #888; font-size: 0.9rem;">Multi-speed SFP configuration (2.5G + 1G)</div>
                         </div>
-                        <div class="design-arrow">→</div>
+                        <div class="design-arrow" style="font-size: 1.5rem; color: #667eea; transition: transform 0.3s;">→</div>
                     </a>
-                    <a href="https://github.com/ajayadaha1/Versal-Baremetal" class="design-item" target="_blank">
-                        <div class="design-icon">📦</div>
-                        <div class="design-info">
-                            <div class="design-name">Versal Baremetal</div>
-                            <div class="design-desc">Baremetal Ethernet examples for Versal</div>
+                    <a href="https://github.com/ajayadaha1/Versal-Baremetal" class="design-item" target="_blank" style="background: var(--card-bg); border: 2px solid #e3f2fd; border-left: 4px solid #667eea; border-radius: 12px; padding: 1.2rem; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div class="design-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 10px; flex-shrink: 0;">📦</div>
+                        <div class="design-info" style="flex: 1;">
+                            <div class="design-name" style="font-weight: 700; font-size: 1.1rem; color: var(--text-color); margin-bottom: 0.3rem;">Versal Baremetal</div>
+                            <div class="design-desc" style="color: #888; font-size: 0.9rem;">Baremetal Ethernet examples for Versal</div>
                         </div>
-                        <div class="design-arrow">→</div>
+                        <div class="design-arrow" style="font-size: 1.5rem; color: #667eea; transition: transform 0.3s;">→</div>
                     </a>
                 </div>
             </div>
 
             <!-- ZCU Designs -->
             <div class="design-category">
-                <h3 class="category-header">
-                    <span class="category-icon">⚡</span>
-                    <span>Zynq UltraScale+ Designs</span>
+                <h3 class="category-header" onclick="toggleDesignCategory(this)" style="background: linear-gradient(135deg, rgba(245, 147, 251, 0.15) 0%, rgba(245, 87, 108, 0.15) 100%); border: 2px solid #f5576c; border-radius: 12px; padding: 1.2rem; cursor: pointer; user-select: none; display: flex; align-items: center; gap: 1rem; transition: all 0.3s; box-shadow: 0 4px 15px rgba(245, 87, 108, 0.2);">
+                    <span class="category-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 12px; color: white;">⚡</span>
+                    <span style="flex: 1; font-size: 1.4rem; font-weight: 700; color: #f5576c;">Zynq UltraScale+ Designs</span>
+                    <span style="background: #f5576c; color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">6 Projects</span>
+                    <span class="toggle-icon" style="font-size: 1.2rem; transition: transform 0.3s; color: #f5576c;">▼</span>
                 </h3>
-                <div class="design-list">
-                    <a href="https://github.com/ajayadaha1/ZCU102-Ethernet" class="design-item" target="_blank">
-                        <div class="design-icon">📦</div>
-                        <div class="design-info">
-                            <div class="design-name">ZCU102-Ethernet</div>
-                            <div class="design-desc">Complete ZCU102 Ethernet examples (replaces XAPP1305)</div>
+                <div class="design-list" style="display: none; margin-top: 1rem; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1rem;">
+                    <a href="https://github.com/ajayadaha1/ZCU102-Ethernet" class="design-item" target="_blank" style="background: var(--card-bg); border: 2px solid #fce4ec; border-left: 4px solid #f5576c; border-radius: 12px; padding: 1.2rem; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div class="design-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); border-radius: 10px; flex-shrink: 0;">📦</div>
+                        <div class="design-info" style="flex: 1;">
+                            <div class="design-name" style="font-weight: 700; font-size: 1.1rem; color: var(--text-color); margin-bottom: 0.3rem;">ZCU102-Ethernet</div>
+                            <div class="design-desc" style="color: #888; font-size: 0.9rem;">Complete ZCU102 Ethernet examples (replaces XAPP1305)</div>
                         </div>
-                        <div class="design-arrow">→</div>
+                        <div class="design-arrow" style="font-size: 1.5rem; color: #f5576c; transition: transform 0.3s;">→</div>
                     </a>
-                    <a href="https://github.com/ajayadaha1/ZCU670-100G-CMAC" class="design-item" target="_blank">
-                        <div class="design-icon">📦</div>
-                        <div class="design-info">
-                            <div class="design-name">ZCU670 100G CMAC</div>
-                            <div class="design-desc">100G CMAC implementation for ZCU670</div>
+                    <a href="https://github.com/ajayadaha1/ZCU670-100G-CMAC" class="design-item" target="_blank" style="background: var(--card-bg); border: 2px solid #fce4ec; border-left: 4px solid #f5576c; border-radius: 12px; padding: 1.2rem; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div class="design-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); border-radius: 10px; flex-shrink: 0;">📦</div>
+                        <div class="design-info" style="flex: 1;">
+                            <div class="design-name" style="font-weight: 700; font-size: 1.1rem; color: var(--text-color); margin-bottom: 0.3rem;">ZCU670 100G CMAC</div>
+                            <div class="design-desc" style="color: #888; font-size: 0.9rem;">100G CMAC implementation for ZCU670</div>
                         </div>
-                        <div class="design-arrow">→</div>
+                        <div class="design-arrow" style="font-size: 1.5rem; color: #f5576c; transition: transform 0.3s;">→</div>
                     </a>
-                    <a href="https://github.com/ajayadaha1/ZCU111-1G-10G-25G" class="design-item" target="_blank">
-                        <div class="design-icon">📦</div>
-                        <div class="design-info">
-                            <div class="design-name">ZCU111 Multi-Speed (1G/10G/25G)</div>
-                            <div class="design-desc">Multi-rate Ethernet designs for ZCU111</div>
+                    <a href="https://github.com/ajayadaha1/ZCU111-1G-10G-25G" class="design-item" target="_blank" style="background: var(--card-bg); border: 2px solid #fce4ec; border-left: 4px solid #f5576c; border-radius: 12px; padding: 1.2rem; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div class="design-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); border-radius: 10px; flex-shrink: 0;">📦</div>
+                        <div class="design-info" style="flex: 1;">
+                            <div class="design-name" style="font-weight: 700; font-size: 1.1rem; color: var(--text-color); margin-bottom: 0.3rem;">ZCU111 Multi-Speed (1G/10G/25G)</div>
+                            <div class="design-desc" style="color: #888; font-size: 0.9rem;">Multi-rate Ethernet designs for ZCU111</div>
                         </div>
-                        <div class="design-arrow">→</div>
+                        <div class="design-arrow" style="font-size: 1.5rem; color: #f5576c; transition: transform 0.3s;">→</div>
                     </a>
-                    <a href="https://github.com/ajayadaha1/ZCU102-USXGMII" class="design-item" target="_blank">
-                        <div class="design-icon">📦</div>
-                        <div class="design-info">
-                            <div class="design-name">ZCU102 USXGMII</div>
-                            <div class="design-desc">USXGMII interface implementation for ZCU102</div>
+                    <a href="https://github.com/ajayadaha1/ZCU102-USXGMII" class="design-item" target="_blank" style="background: var(--card-bg); border: 2px solid #fce4ec; border-left: 4px solid #f5576c; border-radius: 12px; padding: 1.2rem; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div class="design-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); border-radius: 10px; flex-shrink: 0;">📦</div>
+                        <div class="design-info" style="flex: 1;">
+                            <div class="design-name" style="font-weight: 700; font-size: 1.1rem; color: var(--text-color); margin-bottom: 0.3rem;">ZCU102 USXGMII</div>
+                            <div class="design-desc" style="color: #888; font-size: 0.9rem;">USXGMII interface implementation for ZCU102</div>
                         </div>
-                        <div class="design-arrow">→</div>
+                        <div class="design-arrow" style="font-size: 1.5rem; color: #f5576c; transition: transform 0.3s;">→</div>
                     </a>
-                    <a href="https://github.com/ajayadaha1/ZCU102-1G-10G-Switching-Core" class="design-item" target="_blank">
-                        <div class="design-icon">📦</div>
-                        <div class="design-info">
-                            <div class="design-name">ZCU102 Switching Core (1G/10G)</div>
-                            <div class="design-desc">Ethernet switching core with multi-speed support</div>
+                    <a href="https://github.com/ajayadaha1/ZCU102-1G-10G-Switching-Core" class="design-item" target="_blank" style="background: var(--card-bg); border: 2px solid #fce4ec; border-left: 4px solid #f5576c; border-radius: 12px; padding: 1.2rem; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div class="design-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); border-radius: 10px; flex-shrink: 0;">📦</div>
+                        <div class="design-info" style="flex: 1;">
+                            <div class="design-name" style="font-weight: 700; font-size: 1.1rem; color: var(--text-color); margin-bottom: 0.3rem;">ZCU102 Switching Core (1G/10G)</div>
+                            <div class="design-desc" style="color: #888; font-size: 0.9rem;">Ethernet switching core with multi-speed support</div>
                         </div>
-                        <div class="design-arrow">→</div>
+                        <div class="design-arrow" style="font-size: 1.5rem; color: #f5576c; transition: transform 0.3s;">→</div>
                     </a>
-                    <a href="https://github.com/ajayadaha1/ethernet-fmc-zynq-gem" class="design-item" target="_blank">
-                        <div class="design-icon">📦</div>
-                        <div class="design-info">
-                            <div class="design-name">Ethernet FMC Zynq GEM</div>
-                            <div class="design-desc">Ethernet FMC examples using Zynq hard GEM</div>
+                    <a href="https://github.com/ajayadaha1/ethernet-fmc-zynq-gem" class="design-item" target="_blank" style="background: var(--card-bg); border: 2px solid #fce4ec; border-left: 4px solid #f5576c; border-radius: 12px; padding: 1.2rem; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div class="design-icon" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); border-radius: 10px; flex-shrink: 0;">📦</div>
+                        <div class="design-info" style="flex: 1;">
+                            <div class="design-name" style="font-weight: 700; font-size: 1.1rem; color: var(--text-color); margin-bottom: 0.3rem;">Ethernet FMC Zynq GEM</div>
+                            <div class="design-desc" style="color: #888; font-size: 0.9rem;">Ethernet FMC examples using Zynq hard GEM</div>
                         </div>
-                        <div class="design-arrow">→</div>
+                        <div class="design-arrow" style="font-size: 1.5rem; color: #f5576c; transition: transform 0.3s;">→</div>
                     </a>
                 </div>
             </div>
         </div>
 
+        <style>
+            .category-header:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+            }
+            .design-item:hover {
+                transform: translateX(5px);
+                box-shadow: 0 6px 20px rgba(0,0,0,0.12) !important;
+                border-color: currentColor !important;
+            }
+            .design-item:hover .design-arrow {
+                transform: translateX(5px);
+            }
+        </style>
+
         <div class="tasks-section">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
-                <h2 class="section-title" style="margin-bottom: 0; border-bottom: none;">✅ Transition Tasks</h2>
+        <!-- Transition Tasks Section -->
+        <div class="section" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 20px; padding: 2.5rem; position: relative; overflow: hidden;">
+            <!-- Decorative elements -->
+            <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+            <div style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(118, 75, 162, 0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+            
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="font-size: 2.5rem; animation: pulse 2s infinite;">🎯</div>
+                    <h2 class="section-title" style="margin-bottom: 0; border-bottom: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Transition Tasks</h2>
+                </div>
                 <div style="display: flex; gap: 1rem; align-items: center;">
-                    <div style="background: linear-gradient(135deg, #51cf66 0%, #40c057 100%); color: white; padding: 0.6rem 1.2rem; border-radius: 50px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(81, 207, 102, 0.3);">
-                        <span id="completedCount">2</span> of 5 Done
+                    <div style="background: linear-gradient(135deg, #51cf66 0%, #40c057 100%); color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: 700; font-size: 1rem; box-shadow: 0 6px 20px rgba(81, 207, 102, 0.4);">
+                        <span id="completedCount">4</span> of 5 Done
                     </div>
-                    <div style="font-size: 2rem;">🎯</div>
+                    <div style="font-size: 2.5rem;">✅</div>
                 </div>
             </div>
             
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill" style="width: 20%;">
-                    <span id="progressText">1 of 5 completed (20%)</span>
+            <div class="progress-bar" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border: 2px solid rgba(102, 126, 234, 0.2); height: 50px; border-radius: 30px; position: relative; z-index: 1; overflow: hidden; box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.05);">
+                <div class="progress-fill" id="progressFill" style="width: 80%; background: linear-gradient(135deg, #51cf66 0%, #40c057 100%); height: 100%; display: flex; align-items: center; justify-content: center; border-radius: 30px; transition: width 0.5s ease; box-shadow: 0 4px 15px rgba(81, 207, 102, 0.4); min-width: fit-content; padding: 0 1rem;">
+                    <span id="progressText" style="font-weight: 700; font-size: 0.95rem; color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); white-space: nowrap;">4 of 5 done (80%)</span>
                 </div>
             </div>
 
-            <div class="task-item completed" onclick="toggleTask(this)" data-completed="true" data-task-id="task-1">
-                <div class="task-number">1</div>
-                <div class="task-content">
-                    <strong>✓ Add gitclone command to ZCU102 GitHub repo top level README</strong>
+            <div style="margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.2rem; position: relative; z-index: 1;">
+                <!-- Task 1 -->
+                <div class="task-item completed" onclick="toggleTask(this)" data-completed="true" data-task-id="task-1">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 5rem; opacity: 0.08;" data-original-icon="📝">✓</div>
                     <span class="done-badge">DONE</span>
-                    <div style="margin-top: 0.8rem;">
-                        <a href="https://github.com/Xilinx-Wiki-Projects/ZCU102-Ethernet/tree/main?tab=readme-ov-file#cloning-the-repository" 
-                           style="display: inline-block; padding: 0.5rem 1rem; background: #51cf66; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem;" 
-                           onclick="event.stopPropagation();" 
-                           target="_blank">🔗 View on GitHub →</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="task-item completed" onclick="toggleTask(this)" data-completed="true" data-task-id="task-2">
-                <div class="task-number">2</div>
-                <div class="task-content">
-                    <strong>✓ Archive Jenkins ZCU102 Update Automation Notes</strong>
-                    <span class="done-badge">DONE</span>
-                    <div style="margin-left: 2rem; margin-top: 0.8rem;">
-                        Archive in AJ's GitHub repo with:
-                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
-                            <li>✓ Extra notes for handoff</li>
-                            <li>✓ README file for future maintainers</li>
-                            <li>✓ Jenkins PowerPoint presentation</li>
-                        </ul>
-                        <div style="margin-top: 1rem;">
-                            <a href="https://github.com/ajayadaha1/JenkinsFiles-For-Ethernet-Upgrade" 
-                               style="display: inline-block; padding: 0.5rem 1rem; background: #51cf66; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem; margin-right: 0.5rem; margin-bottom: 0.5rem;" 
-                               onclick="event.stopPropagation();" 
-                               target="_blank">🔗 View Repo →</a>
-                            <a href="JenkinsFiles-For-Ethernet-Upgrade/README.md" 
-                               style="display: inline-block; padding: 0.5rem 1rem; background: #51cf66; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem; margin-right: 0.5rem; margin-bottom: 0.5rem;" 
-                               onclick="event.stopPropagation();" 
-                               target="_blank">📖 README →</a>
-                            <a href="https://github.com/ajayadaha1/JenkinsFiles-For-Ethernet-Upgrade/blob/main/Jenkins%20Automation%20for%20WTS.pptx" 
-                               style="display: inline-block; padding: 0.5rem 1rem; background: #51cf66; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;" 
-                               onclick="event.stopPropagation();" 
-                               target="_blank">📊 PowerPoint →</a>
-                        </div>
-                        <div class="pdf-container" style="margin-top: 1.5rem;" onclick="event.stopPropagation();">
-                            <iframe src="Jenkins Automation for WTS.pdf" type="application/pdf" width="100%" height="600px" style="border: 2px solid var(--border-color); border-radius: 10px;">
-                                <p>Your browser does not support PDF viewing. <a href="Jenkins Automation for WTS.pdf" download style="color: var(--primary-color); text-decoration: underline;">Download the PDF</a> instead.</p>
-                            </iframe>
+                    <div style="display: flex; align-items: start; gap: 1.5rem;">
+                        <div class="task-number">1</div>
+                        <div class="task-content" style="flex: 1;">
+                            <div style="margin-bottom: 1rem;">
+                                <strong style="font-size: 1.2rem; color: var(--text-color);">✓ Add gitclone command to ZCU102 GitHub repo top level README</strong>
+                            </div>
+                            <div style="margin-top: 0.8rem;">
+                                <a href="https://github.com/Xilinx-Wiki-Projects/ZCU102-Ethernet/tree/main?tab=readme-ov-file#cloning-the-repository" 
+                                   style="display: inline-block; padding: 0.7rem 1.3rem; background: linear-gradient(135deg, #51cf66 0%, #40c057 100%); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(81, 207, 102, 0.3); transition: all 0.3s;" 
+                                   onclick="event.stopPropagation();" 
+                                   target="_blank">🔗 View on GitHub →</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="task-item" onclick="toggleTask(this)" data-completed="false" data-task-id="task-3">
-                <div class="task-number">3</div>
-                <div class="task-content">
-                    <strong>Provide ZCU102 Ethernet Interfaces Map with PS-GEM DT Nodes</strong>
-                    <ul style="margin-left: 2rem; margin-top: 0.8rem;">
-                        <li><strong>PS-GEM → EMIO → PCS/PMA → SFP</strong> (1000base-x/sgmii)
-                            <br><small>Include PHY/MAC mode details, MDIO bus info, full DT nodes for 2020.1 → 2025.2</small>
-                        </li>
-                        <li style="margin-top: 0.5rem;"><strong>PS-GEM → MIO → RGMII → TI PHY DPxx</strong> (1000base-t)
-                            <br><small>Include MDIO bus info, full DT nodes for 2020.1 → 2025.2</small>
-                        </li>
-                        <li style="margin-top: 0.5rem;"><strong>PS-GEM → PS-GTR</strong> (1000base-x/sgmii)
-                            <br><small>Build BSP for multiple versions and decompile DTB</small>
-                        </li>
-                        <li style="margin-top: 0.5rem;"><strong>Other dev boards:</strong> KR260 consideration</li>
-                    </ul>
+                <!-- Task 2 -->
+                <div class="task-item completed" onclick="toggleTask(this)" data-completed="true" data-task-id="task-2">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 5rem; opacity: 0.08;" data-original-icon="📦">✓</div>
+                    <span class="done-badge">DONE</span>
+                    
+                    <!-- Wrapper to force column layout -->
+                    <div style="display: flex; flex-direction: column; width: 100%;">
+                        <!-- Header section with number and title -->
+                        <div style="display: flex; align-items: start; gap: 1.5rem; margin-bottom: 1rem;">
+                        <div class="task-number">2</div>
+                        <div style="flex: 1;">
+                            <div style="margin-bottom: 1rem;">
+                                <strong style="font-size: 1.2rem; color: var(--text-color);">✓ Archive Jenkins ZCU102 Update Automation Notes</strong>
+                            </div>
+                            
+                            <!-- Light card with list and buttons only -->
+                            <div style="background: rgba(255, 255, 255, 0.5); padding: 1.2rem; border-radius: 12px; border-left: 4px solid #51cf66; width: 100%; box-sizing: border-box;">
+                                <strong style="color: var(--text-color);">Archive in AJ's GitHub repo with:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.8rem; color: var(--text-color);">
+                                    <li style="margin-bottom: 0.5rem;">✓ Extra notes for handoff</li>
+                                    <li style="margin-bottom: 0.5rem;">✓ README file for future maintainers</li>
+                                    <li>✓ Jenkins PowerPoint presentation</li>
+                                </ul>
+                                
+                                <div style="margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.8rem;">
+                                    <a href="https://github.com/ajayadaha1/JenkinsFiles-For-Ethernet-Upgrade" 
+                                       style="display: inline-block; padding: 0.7rem 1.3rem; background: linear-gradient(135deg, #51cf66 0%, #40c057 100%); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(81, 207, 102, 0.3); transition: all 0.3s;" 
+                                       onclick="event.stopPropagation();" 
+                                       target="_blank">🔗 View Repo →</a>
+                                    <a href="JenkinsFiles-For-Ethernet-Upgrade/README.md" 
+                                       style="display: inline-block; padding: 0.7rem 1.3rem; background: linear-gradient(135deg, #51cf66 0%, #40c057 100%); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(81, 207, 102, 0.3); transition: all 0.3s;" 
+                                       onclick="event.stopPropagation();" 
+                                       target="_blank">📖 README →</a>
+                                    <a href="https://github.com/ajayadaha1/JenkinsFiles-For-Ethernet-Upgrade/blob/main/Jenkins%20Automation%20for%20WTS.pptx" 
+                                       style="display: inline-block; padding: 0.7rem 1.3rem; background: linear-gradient(135deg, #51cf66 0%, #40c057 100%); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(81, 207, 102, 0.3); transition: all 0.3s;" 
+                                       onclick="event.stopPropagation();" 
+                                       target="_blank">📊 PowerPoint →</a>
+                            </div>
+                        </div> <!-- End light card -->
+                    </div> <!-- End flex: 1 content area -->
+                </div> <!-- End flex container with task number -->
+                
+                <!-- PDF in column layout - full width below -->
+                <div class="pdf-container" style="margin-top: 1.5rem;" onmousedown="event.stopPropagation();" onclick="event.stopPropagation();" onmouseup="event.stopPropagation();">
+                    <iframe src="Jenkins Automation for WTS.pdf" type="application/pdf" width="100%" height="700px" style="border: 2px solid rgba(81, 207, 102, 0.3); border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); display: block; width: 100%; pointer-events: auto;">
+                        <p style="padding: 2rem;">Your browser does not support PDF viewing. <a href="Jenkins Automation for WTS.pdf" download style="color: var(--primary-color); text-decoration: underline;">Download the PDF</a> instead.</p>
+                    </iframe>
                 </div>
-            </div>
-
-            <div class="task-item" onclick="toggleTask(this)" data-completed="false" data-task-id="task-4">
-                <div class="task-number">4</div>
-                <div class="task-content">
-                    <strong>MRMAC/DCMAC Debug Playbook</strong>
-                    <div style="margin-left: 2rem; margin-top: 0.8rem;">
-                        Create 1-2 page cheat sheet including:
-                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
-                            <li>Driver links</li>
-                            <li>DT links</li>
-                            <li>Useful ARs</li>
-                            <li>Version differences/notes</li>
-                            <li>Cases of note (e.g., 3x25 config)</li>
-                            <li>Main issue types/details & driver issues</li>
-                        </ul>
-                        <a href="playbook.html" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;" onclick="event.stopPropagation();">📖 View Playbook →</a>
+            </div> <!-- End column wrapper -->
+        </div> <!-- End task-item -->
+                <!-- Task 3 -->
+                <div class="task-item" onclick="toggleTask(this)" data-completed="false" data-task-id="task-3">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 5rem; opacity: 0.05;">📍</div>
+                    <span class="done-badge" style="display: none;">DONE</span>
+                    
+                    <!-- Wrapper to force column layout -->
+                    <div style="display: flex; flex-direction: column; width: 100%;">
+                        <div style="display: flex; align-items: start; gap: 1.5rem; margin-bottom: 1rem;">
+                            <div class="task-number">3</div>
+                            <div class="task-content" style="flex: 1;">
+                                <div style="margin-bottom: 1rem;">
+                                    <strong style="font-size: 1.2rem; color: var(--text-color);">Provide ZCU102 Ethernet Interfaces Map with PS-GEM DT Nodes</strong>
+                                </div>
+                                <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%); padding: 1.2rem; border-radius: 12px; border-left: 4px solid #667eea; width: 100%; box-sizing: border-box;">
+                                <ul style="margin-left: 1.5rem; margin-top: 0; color: var(--text-color);">
+                                    <li style="margin-bottom: 1rem;"><strong>PS-GEM → EMIO → PCS/PMA → SFP</strong> (1000base-x/sgmii)
+                                        <br><small style="color: #888;">Include PHY/MAC mode details, MDIO bus info, full DT nodes for 2020.1 → 2025.2</small>
+                                    </li>
+                                    <li style="margin-bottom: 1rem;"><strong>PS-GEM → MIO → RGMII → TI PHY DPxx</strong> (1000base-t)
+                                        <br><small style="color: #888;">Include MDIO bus info, full DT nodes for 2020.1 → 2025.2</small>
+                                    </li>
+                                    <li style="margin-bottom: 1rem;"><strong>PS-GEM → PS-GTR</strong> (1000base-x/sgmii)
+                                        <br><small style="color: #888;">Build BSP for multiple versions and decompile DTB</small>
+                                    </li>
+                                    <li><strong>Other dev boards:</strong> KR260 consideration</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                </div> <!-- End column wrapper -->
                 </div>
-            </div>
 
-            <div class="task-item" onclick="toggleTask(this)" data-completed="false" data-task-id="task-5">
-                <div class="task-number">5</div>
-                <div class="task-content">
-                    <strong>AXI 10G/25G Debug Playbook</strong>
-                    <div style="margin-left: 2rem; margin-top: 0.8rem;">
-                        Create 1-2 page cheat sheet including:
-                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
-                            <li>Driver links</li>
-                            <li>DT links</li>
-                            <li>Useful ARs</li>
-                            <li>Version differences/notes</li>
-                            <li>Cases of note</li>
-                            <li>Main issue types/details</li>
-                            <li>Driver issues</li>
-                            <li>DT issues</li>
-                            <li>Clocking notes</li>
-                            <li>DMA reset timeout patch</li>
-                        </ul>
-                        <a href="playbook.html" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #667eea; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;" onclick="event.stopPropagation();">📖 View Playbook →</a>
+                <!-- Task 4 -->
+                <div class="task-item completed" onclick="toggleTask(this)" data-completed="true" data-task-id="task-4">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 5rem; opacity: 0.08;" data-original-icon="📖">✓</div>
+                    <span class="done-badge">DONE</span>
+                    
+                    <!-- Wrapper to force column layout -->
+                    <div style="display: flex; flex-direction: column; width: 100%;">
+                        <div style="display: flex; align-items: start; gap: 1.5rem; margin-bottom: 1rem;">
+                            <div class="task-number">4</div>
+                        <div class="task-content" style="flex: 1;">
+                            <div style="margin-bottom: 1rem;">
+                                <strong style="font-size: 1.2rem; color: var(--text-color);">✓ MRMAC/DCMAC Debug Playbook</strong>
+                            </div>
+                            <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%); padding: 1.2rem; border-radius: 12px; border-left: 4px solid #51cf66; width: 100%; box-sizing: border-box;">
+                                <strong style="color: var(--text-color);">Create 1-2 page cheat sheet including:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.8rem; color: var(--text-color);">
+                                    <li style="margin-bottom: 0.4rem;">Driver links</li>
+                                    <li style="margin-bottom: 0.4rem;">DT links</li>
+                                    <li style="margin-bottom: 0.4rem;">Useful ARs</li>
+                                    <li style="margin-bottom: 0.4rem;">Version differences/notes</li>
+                                    <li style="margin-bottom: 0.4rem;">Cases of note (e.g., 3x25 config)</li>
+                                    <li>Main issue types/details & driver issues</li>
+                                </ul>
+                            </div>
+                            <a href="playbook.html" style="display: inline-block; margin-top: 1.2rem; padding: 0.7rem 1.3rem; background: linear-gradient(135deg, #51cf66 0%, #40c057 100%); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; box-shadow: 0 4px 12px rgba(81, 207, 102, 0.3); transition: all 0.3s;" onclick="event.stopPropagation();">📖 View Playbook →</a>
+                        </div>
                     </div>
+                </div> <!-- End column wrapper -->
+                </div>
+
+                <!-- Task 5 -->
+                <div class="task-item completed" onclick="toggleTask(this)" data-completed="true" data-task-id="task-5">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 5rem; opacity: 0.08;" data-original-icon="📘">✓</div>
+                    <span class="done-badge">DONE</span>
+                    
+                    <!-- Wrapper to force column layout -->
+                    <div style="display: flex; flex-direction: column; width: 100%;">
+                        <div style="display: flex; align-items: start; gap: 1.5rem; margin-bottom: 1rem;">
+                            <div class="task-number">5</div>
+                        <div class="task-content" style="flex: 1;">
+                            <div style="margin-bottom: 1rem;">
+                                <strong style="font-size: 1.2rem; color: var(--text-color);">✓ 10G/25G Ethernet Subsystem Debug Playbook</strong>
+                            </div>
+                            <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%); padding: 1.2rem; border-radius: 12px; border-left: 4px solid #51cf66; width: 100%; box-sizing: border-box;">
+                                <strong style="color: var(--text-color);">Create 1-2 page cheat sheet including:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.8rem; color: var(--text-color);">
+                                    <li style="margin-bottom: 0.4rem;">Driver links</li>
+                                    <li style="margin-bottom: 0.4rem;">DT links</li>
+                                    <li style="margin-bottom: 0.4rem;">Useful ARs</li>
+                                    <li style="margin-bottom: 0.4rem;">Version differences/notes</li>
+                                    <li style="margin-bottom: 0.4rem;">Cases of note</li>
+                                    <li style="margin-bottom: 0.4rem;">Main issue types/details</li>
+                                    <li style="margin-bottom: 0.4rem;">Driver issues</li>
+                                    <li style="margin-bottom: 0.4rem;">DT issues</li>
+                                    <li style="margin-bottom: 0.4rem;">Clocking notes</li>
+                                    <li>DMA reset timeout patch</li>
+                                </ul>
+                            </div>
+                            <a href="playbook.html" style="display: inline-block; margin-top: 1.2rem; padding: 0.7rem 1.3rem; background: linear-gradient(135deg, #51cf66 0%, #40c057 100%); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; box-shadow: 0 4px 12px rgba(81, 207, 102, 0.3); transition: all 0.3s;" onclick="event.stopPropagation();">📖 View Playbook →</a>
+                        </div>
+                    </div>
+                </div> <!-- End column wrapper -->
                 </div>
             </div>
         </div>
@@ -359,13 +755,94 @@
         function toggleTask(element) {
             const taskId = element.dataset.taskId;
             const isCompleted = element.dataset.completed === 'true';
-            element.dataset.completed = !isCompleted;
+            const newCompletedState = !isCompleted;
+            
+            element.dataset.completed = newCompletedState;
             element.classList.toggle('completed');
+            
+            // Store original icon before changing
+            const checkmark = element.querySelector('[style*="font-size: 5rem"]');
+            let originalIcon = '';
+            
+            if (checkmark) {
+                if (!checkmark.dataset.originalIcon) {
+                    checkmark.dataset.originalIcon = checkmark.textContent;
+                }
+                originalIcon = checkmark.dataset.originalIcon;
+                
+                if (newCompletedState) {
+                    checkmark.style.opacity = '0.08';
+                    checkmark.textContent = '✓';
+                } else {
+                    checkmark.style.opacity = '0.05';
+                    checkmark.textContent = originalIcon;
+                }
+            }
+            
+            // Update DONE badge visibility
+            const doneBadge = element.querySelector('.done-badge');
+            if (doneBadge) {
+                doneBadge.style.display = newCompletedState ? 'inline-block' : 'none';
+            }
+            
+            // Update task title checkmark
+            const taskTitle = element.querySelector('.task-content strong');
+            if (taskTitle && newCompletedState && !taskTitle.textContent.startsWith('✓')) {
+                taskTitle.textContent = '✓ ' + taskTitle.textContent;
+            } else if (taskTitle && !newCompletedState && taskTitle.textContent.startsWith('✓')) {
+                taskTitle.textContent = taskTitle.textContent.replace('✓ ', '');
+            }
+            
+            // Update button colors
+            const buttons = element.querySelectorAll('a[style*="background: linear-gradient"]');
+            buttons.forEach(button => {
+                if (newCompletedState) {
+                    // Change to green
+                    button.style.background = 'linear-gradient(135deg, #51cf66 0%, #40c057 100%)';
+                    button.style.boxShadow = '0 4px 12px rgba(81, 207, 102, 0.3)';
+                } else {
+                    // Change back to purple
+                    button.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                    button.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
+                }
+            });
+            
+            // Update inner card border colors and background
+            const innerCards = element.querySelectorAll('div[style*="border-left"]');
+            innerCards.forEach(card => {
+                if (newCompletedState) {
+                    // Change border to green
+                    card.style.borderLeft = '4px solid #51cf66';
+                    // Change background to light
+                    card.style.background = 'rgba(255, 255, 255, 0.5)';
+                } else {
+                    // Change border back to purple
+                    card.style.borderLeft = '4px solid #667eea';
+                    // Change background to purple tint
+                    card.style.background = 'rgba(102, 126, 234, 0.1)';
+                }
+            });
+            
+            // Update PDF border separately (now outside inner card)
+            const pdfIframe = element.querySelector('iframe[src*=".pdf"]');
+            if (pdfIframe) {
+                pdfIframe.style.border = newCompletedState 
+                    ? '2px solid rgba(81, 207, 102, 0.3)'  // green
+                    : '2px solid rgba(102, 126, 234, 0.3)'; // purple
+            }
             
             // Save to localStorage
             const taskStates = JSON.parse(localStorage.getItem('taskStates') || '{}');
-            taskStates[taskId] = !isCompleted;
+            taskStates[taskId] = newCompletedState;
             localStorage.setItem('taskStates', JSON.stringify(taskStates));
+            
+            // Show confetti animation only when completing a task
+            if (newCompletedState) {
+                showConfetti();
+            } else {
+                // Show popup without confetti when reopening
+                showReopenNotification();
+            }
             
             updateProgress();
         }
@@ -380,11 +857,96 @@
             const completedCount = document.getElementById('completedCount');
             
             progressFill.style.width = percentage + '%';
-            progressText.textContent = `${completedTasks.length} of ${tasks.length} completed (${percentage}%)`;
+            progressText.textContent = `${completedTasks.length} of ${tasks.length} done (${percentage}%)`;
             
             if (completedCount) {
                 completedCount.textContent = completedTasks.length;
             }
+        }
+
+        function showConfetti() {
+            const colors = ['#51cf66', '#40c057', '#37b24d', '#2f9e44', '#f59f00', '#fd7e14'];
+            
+            const confettiCount = 50;
+            const container = document.body;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const size = Math.random() * 10 + 5;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 2 + 2;
+                const delay = Math.random() * 0.5;
+                
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: ${color};
+                    left: ${left}%;
+                    top: -20px;
+                    border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+                    opacity: ${Math.random() * 0.5 + 0.5};
+                    z-index: 10001;
+                    pointer-events: none;
+                    animation: confettiFall ${animationDuration}s ease-in ${delay}s forwards;
+                    transform: rotate(${Math.random() * 360}deg);
+                `;
+                
+                container.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), (animationDuration + delay) * 1000 + 100);
+            }
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.innerHTML = '🎉 <strong>Task Completed!</strong> Great job! 🎉';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%) scale(0);
+                background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+                color: white;
+                padding: 1.2rem 2.5rem;
+                border-radius: 50px;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+                z-index: 10002;
+                font-weight: 600;
+                font-size: 1.1rem;
+                animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.animation = 'popOut 0.3s ease-in forwards';
+                setTimeout(() => notification.remove(), 300);
+            }, 2500);
+        }
+
+        function showReopenNotification() {
+            // Show notification without confetti
+            const notification = document.createElement('div');
+            notification.innerHTML = '🔄 <strong>Task Reopened</strong>';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%) scale(0);
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 1.2rem 2.5rem;
+                border-radius: 50px;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+                z-index: 10002;
+                font-weight: 600;
+                font-size: 1.1rem;
+                animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.animation = 'popOut 0.3s ease-in forwards';
+                setTimeout(() => notification.remove(), 300);
+            }, 2500);
         }
 
         function copyToClipboard(text) {
@@ -405,12 +967,112 @@
             const taskStates = JSON.parse(localStorage.getItem('taskStates') || '{}');
             document.querySelectorAll('.task-item').forEach(task => {
                 const taskId = task.dataset.taskId;
-                if (taskStates[taskId]) {
+                const isCompleted = taskStates[taskId] === true;
+                
+                if (isCompleted) {
                     task.dataset.completed = 'true';
                     task.classList.add('completed');
+                    
+                    // Update checkmark symbol
+                    const checkmark = task.querySelector('[style*="font-size: 5rem"]');
+                    if (checkmark) {
+                        if (!checkmark.dataset.originalIcon) {
+                            checkmark.dataset.originalIcon = checkmark.textContent;
+                        }
+                        checkmark.style.opacity = '0.08';
+                        checkmark.textContent = '✓';
+                    }
+                    
+                    // Show DONE badge
+                    const doneBadge = task.querySelector('.done-badge');
+                    if (doneBadge) {
+                        doneBadge.style.display = 'inline-block';
+                    }
+                    
+                    // Add checkmark to title
+                    const taskTitle = task.querySelector('.task-content strong');
+                    if (taskTitle && !taskTitle.textContent.startsWith('✓')) {
+                        taskTitle.textContent = '✓ ' + taskTitle.textContent;
+                    }
+                    
+                    // Update button colors to green
+                    const buttons = task.querySelectorAll('a[style*="background: linear-gradient"]');
+                    buttons.forEach(button => {
+                        button.style.background = 'linear-gradient(135deg, #51cf66 0%, #40c057 100%)';
+                        button.style.boxShadow = '0 4px 12px rgba(81, 207, 102, 0.3)';
+                    });
+                    
+                    // Update inner card border colors to green
+                    const innerCards = task.querySelectorAll('div[style*="border-left"]');
+                    innerCards.forEach(card => {
+                        card.style.borderLeft = '4px solid #51cf66';
+                        // Update PDF border if present
+                        const pdfIframe = card.querySelector('iframe[src*=".pdf"]');
+                        if (pdfIframe) {
+                            pdfIframe.style.border = '2px solid rgba(81, 207, 102, 0.3)';
+                        }
+                    });
+                } else {
+                    task.dataset.completed = 'false';
+                    task.classList.remove('completed');
+                    
+                    // Store original icon
+                    const checkmark = task.querySelector('[style*="font-size: 5rem"]');
+                    if (checkmark) {
+                        if (!checkmark.dataset.originalIcon) {
+                            checkmark.dataset.originalIcon = checkmark.textContent;
+                        }
+                        checkmark.style.opacity = '0.05';
+                    }
+                    
+                    // Hide DONE badge
+                    const doneBadge = task.querySelector('.done-badge');
+                    if (doneBadge) {
+                        doneBadge.style.display = 'none';
+                    }
+                    
+                    // Remove checkmark from title
+                    const taskTitle = task.querySelector('.task-content strong');
+                    if (taskTitle && taskTitle.textContent.startsWith('✓')) {
+                        taskTitle.textContent = taskTitle.textContent.replace('✓ ', '');
+                    }
+                    
+                    // Update button colors to purple
+                    const buttons = task.querySelectorAll('a[style*="background: linear-gradient"]');
+                    buttons.forEach(button => {
+                        button.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                        button.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
+                    });
+                    
+                    // Update inner card border colors to purple and background
+                    const innerCards = task.querySelectorAll('div[style*="border-left"]');
+                    innerCards.forEach(card => {
+                        card.style.borderLeft = '4px solid #667eea';
+                        card.style.background = 'rgba(102, 126, 234, 0.1)';
+                    });
+                    
+                    // Update PDF border separately (now outside inner card)
+                    const pdfIframe = task.querySelector('iframe[src*=".pdf"]');
+                    if (pdfIframe) {
+                        pdfIframe.style.border = '2px solid rgba(102, 126, 234, 0.3)';
+                    }
                 }
             });
             updateProgress();
+        }
+
+        // Toggle design category expand/collapse
+        function toggleDesignCategory(header) {
+            const designList = header.nextElementSibling;
+            const toggleIcon = header.querySelector('.toggle-icon');
+            
+            if (designList.style.display === 'none' || designList.style.display === '') {
+                designList.style.display = 'grid';
+                toggleIcon.style.transform = 'rotate(180deg)';
+            } else {
+                designList.style.display = 'none';
+                toggleIcon.style.transform = 'rotate(0deg)';
+            }
         }
 
         // Initialize on load
