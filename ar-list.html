@@ -360,7 +360,7 @@
                 </p>
                 <ul style="margin-top: 1rem; margin-left: 2rem; color: #666; line-height: 2;">
                     <li>MRMAC/DCMAC configuration and debugging</li>
-                    <li>AXI 10G/25G Ethernet setup and troubleshooting</li>
+                    <li>10G/25G Ethernet Subsystem setup and troubleshooting</li>
                     <li>PS-GEM interface configurations</li>
                     <li>Device Tree configurations across versions</li>
                     <li>Driver issues and patches</li>
@@ -711,8 +711,23 @@
             // Update active button
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
+                // Check if button text matches the filter type
+                const btnText = btn.textContent.toLowerCase();
+                if ((filterType === 'all' && btnText === 'all') ||
+                    (filterType === 'mrmac' && btnText === 'mrmac') ||
+                    (filterType === 'dcmac' && btnText === 'dcmac') ||
+                    (filterType === 'axi' && btnText.includes('axi')) ||
+                    (filterType === 'ps-gem' && btnText === 'ps-gem') ||
+                    (filterType === 'driver' && btnText.includes('driver')) ||
+                    (filterType === 'dt' && btnText.includes('device tree'))) {
+                    btn.classList.add('active');
+                }
             });
-            event.target.classList.add('active');
+
+            // If event.target exists (clicked by user), use it
+            if (typeof event !== 'undefined' && event.target) {
+                event.target.classList.add('active');
+            }
 
             // Filter cards
             const cards = document.querySelectorAll('.ar-card');
@@ -753,8 +768,20 @@
             });
         });
 
+        // Check for URL parameter and auto-filter
+        function applyUrlFilter() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const filter = urlParams.get('filter');
+            
+            if (filter) {
+                // Call the filterARs function with the URL parameter
+                filterARs(filter);
+            }
+        }
+
         // Initialize
         renderARs(arData);
+        applyUrlFilter();
     </script>
 </body>
 </html>
