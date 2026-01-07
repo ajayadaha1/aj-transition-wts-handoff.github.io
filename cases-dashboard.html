@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#667eea">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Cases Dashboard - Customer Support Overview</title>
+    
+    <!-- Load case data files -->
+    <script src="js/cases-2023.js"></script>
+    <script src="js/cases-2024.js"></script>
+    <script src="js/cases-2025.js"></script>
+    
+    <style>
+        :root {
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --border-color: #e1e8ed;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode {
+            --bg-color: #1a1d23;
+            --card-bg: #252933;
+            --text-color: #e4e6eb;
+            --border-color: #3a3f4b;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s;
+            overflow-x: hidden;
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-color);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header p {
+            color: var(--text-color);
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .controls {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .controls-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .cases-table {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            color: var(--text-color);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .case-number {
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .priority-high {
+            color: #f76707;
+            font-weight: 600;
+        }
+
+        .priority-urgent {
+            color: #e03131;
+            font-weight: 700;
+        }
+
+        .priority-normal, .priority-medium {
+            color: #37b24d;
+            font-weight: 600;
+        }
+
+        .device-family {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            background: rgba(102, 126, 234, 0.1);
+            font-size: 0.85rem;
+            display: inline-block;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-color);
+            opacity: 0.6;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .controls-row {
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.6rem;
+            }
+
+            /* Make table scrollable on mobile */
+            .cases-table {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 800px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .dark-mode-toggle {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <span id="darkModeIcon">🌙</span>
+        <span id="darkModeText">Dark Mode</span>
+    </button>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Dashboard</a>
+
+        <header>
+            <h1>📊 Customer Cases Dashboard</h1>
+            <p>Complete overview of closed customer support cases</p>
+        </header>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-number" id="totalCases">328</div>
+                <div class="stat-label">Total Cases</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="filteredCases">328</div>
+                <div class="stat-label">Showing</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="companiesCount">100+</div>
+                <div class="stat-label">Companies</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="deviceFamilies">15+</div>
+                <div class="stat-label">Device Families</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="controls-row">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Search by case number, subject, or company..." onkeyup="filterCases()">
+                </div>
+            </div>
+            <div class="controls-row" style="margin-top: 1rem;">
+                <div class="filter-group">
+                    <button class="filter-btn active" onclick="filterByYear('all')">All Years</button>
+                    <button class="filter-btn" onclick="filterByYear('2023')">2023 (61)</button>
+                    <button class="filter-btn" onclick="filterByYear('2024')">2024 (131)</button>
+                    <button class="filter-btn" onclick="filterByYear('2025')">2025 (136)</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="cases-table">
+            <table id="casesTable">
+                <thead>
+                    <tr>
+                        <th>Case Number</th>
+                        <th>Subject</th>
+                        <th>Company</th>
+                        <th>Priority</th>
+                        <th>Device Family</th>
+                        <th>Date Opened</th>
+                    </tr>
+                </thead>
+                <tbody id="casesTableBody">
+                    <!-- Cases will be loaded here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <div id="noResults" class="no-results" style="display: none;">
+            No cases found matching your search criteria
+        </div>
+    </div>
+
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            document.getElementById('darkModeIcon').textContent = isDark ? '☀️' : '🌙';
+            document.getElementById('darkModeText').textContent = isDark ? 'Light Mode' : 'Dark Mode';
+        }
+
+        // Initialize dark mode from localStorage
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // All cases data - loaded from external files
+        const casesData = [
+            ...(typeof cases2023 !== 'undefined' ? cases2023 : []),
+            ...(typeof cases2024 !== 'undefined' ? cases2024 : []),
+            ...(typeof cases2025 !== 'undefined' ? cases2025 : [])
+        ];
+
+        let currentFilter = 'all';
+        let allCases = casesData;
+
+        // Check for year parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const yearParam = urlParams.get('year');
+        if (yearParam && ['2023', '2024', '2025'].includes(yearParam)) {
+            currentFilter = yearParam;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update dark mode icons
+            if (document.body.classList.contains('dark-mode')) {
+                document.getElementById('darkModeIcon').textContent = '☀️';
+                document.getElementById('darkModeText').textContent = 'Light Mode';
+            }
+            
+            // Load cases with filter applied
+            if (currentFilter !== 'all') {
+                // Update the button state
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.textContent.includes(currentFilter)) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+            
+            // Load and filter cases
+            filterCases();
+        });
+
+        function renderCases(cases) {
+            const tbody = document.getElementById('casesTableBody');
+            const noResults = document.getElementById('noResults');
+            
+            if (cases.length === 0) {
+                tbody.innerHTML = '';
+                noResults.style.display = 'block';
+                document.querySelector('.cases-table').style.display = 'none';
+                return;
+            }
+
+            noResults.style.display = 'none';
+            document.querySelector('.cases-table').style.display = 'block';
+
+            tbody.innerHTML = cases.map(c => `
+                <tr>
+                    <td><span class="case-number">${c.number}</span></td>
+                    <td>${c.subject}</td>
+                    <td>${c.company}</td>
+                    <td><span class="priority-${c.priority.toLowerCase().replace(' ', '-')}">${c.priority}</span></td>
+                    <td><span class="device-family">${c.device}</span></td>
+                    <td>${c.date}</td>
+                </tr>
+            `).join('');
+        }
+
+        function updateStats(cases) {
+            document.getElementById('filteredCases').textContent = cases.length;
+            const companies = new Set(cases.map(c => c.company)).size;
+            document.getElementById('companiesCount').textContent = companies + '+';
+            const devices = new Set(cases.map(c => c.device)).size;
+            document.getElementById('deviceFamilies').textContent = devices + '+';
+        }
+
+        function filterByYear(year) {
+            currentFilter = year;
+            
+            // Update button states (only if event exists)
+            if (typeof event !== 'undefined' && event && event.target) {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                event.target.classList.add('active');
+            }
+
+            // Apply filter
+            filterCases();
+        }
+
+        function filterCases() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            let filtered = allCases;
+
+            // Apply year filter
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(c => c.year === currentFilter);
+            }
+
+            // Apply search filter
+            if (searchTerm) {
+                filtered = filtered.filter(c => 
+                    c.number.toLowerCase().includes(searchTerm) ||
+                    c.subject.toLowerCase().includes(searchTerm) ||
+                    c.company.toLowerCase().includes(searchTerm) ||
+                    c.device.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            renderCases(filtered);
+            updateStats(filtered);
+        }
+    </script>
+</body>
+</html>
