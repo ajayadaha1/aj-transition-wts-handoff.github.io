@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#667eea">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Role Transition Tracker</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <style>
         /* Prevent text size adjustment on iOS */
         html {
@@ -146,9 +146,50 @@
                 border: 1px solid rgba(102, 126, 234, 0.25);
             }
 
+            /* Contribution Section Styles - Light Mode */
+            .contribution-section {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !important;
+                color: white !important;
+            }
+
+            /* Contribution Section Styles - Dark Mode */
+            body.dark-mode .contribution-section {
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 50%, rgba(240, 147, 251, 0.2) 100%) !important;
+                color: var(--text-color) !important;
+                border: 2px solid rgba(102, 126, 234, 0.4);
+            }
+
+            body.dark-mode .contribution-section .chart-container > div > div:first-child {
+                color: var(--text-color) !important;
+            }
+
+            body.dark-mode .contribution-section h2,
+            body.dark-mode .contribution-section h3,
+            body.dark-mode .contribution-section p {
+                color: var(--text-color) !important;
+            }
+
+            body.dark-mode .contribution-section a {
+                background: rgba(102, 126, 234, 0.9) !important;
+                color: white !important;
+                border: 2px solid rgba(102, 126, 234, 0.5) !important;
+            }
+
+            body.dark-mode .contribution-section a:hover {
+                background: rgba(102, 126, 234, 1) !important;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
+            }
+
             @keyframes pulse {
                 0%, 100% { transform: scale(1); }
                 50% { transform: scale(1.1); }
+            }
+
+            /* Hover effect for contribution buttons */
+            .contribution-section a:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
             }
 
             @keyframes confettiFall {
@@ -362,6 +403,108 @@
                 .info-content-box + div[style*="display: grid"] {
                     grid-template-columns: 1fr !important;
                     gap: 1rem !important;
+                }
+
+                /* Contribution section mobile optimizations */
+                .contribution-section {
+                    padding: 1.5rem !important;
+                    border-radius: 15px !important;
+                    margin-bottom: 1.5rem !important;
+                }
+
+                .contribution-section h2 {
+                    font-size: 1.8rem !important;
+                }
+
+                .contribution-section p {
+                    font-size: 0.95rem !important;
+                }
+
+                /* Stats cards - single column on mobile */
+                .contribution-section > div:nth-child(2) {
+                    grid-template-columns: 1fr !important;
+                    gap: 1rem !important;
+                }
+
+                .contribution-section > div:nth-child(2) > div {
+                    padding: 1rem !important;
+                }
+
+                .contribution-section > div:nth-child(2) > div > div:first-child {
+                    font-size: 2rem !important;
+                }
+
+                /* Bar chart mobile adjustments */
+                .chart-container {
+                    height: 180px !important;
+                    gap: 1rem !important;
+                    padding: 0 1rem !important;
+                }
+
+                .chart-container > div {
+                    max-width: 100px !important;
+                }
+
+                .chart-container > div > div:first-child {
+                    font-size: 1.2rem !important;
+                    margin-bottom: 0.8rem !important;
+                }
+
+                .chart-container h3 {
+                    font-size: 1.1rem !important;
+                    margin-bottom: 2rem !important;
+                }
+
+                /* Adjust bar heights for mobile */
+                .chart-container > div:nth-child(1) > div:last-child {
+                    height: 82px !important;
+                    min-height: 82px !important;
+                }
+
+                .chart-container > div:nth-child(2) > div:last-child {
+                    height: 175px !important;
+                    min-height: 175px !important;
+                }
+
+                .chart-container > div:nth-child(3) > div:last-child {
+                    height: 180px !important;
+                    min-height: 180px !important;
+                }
+
+                /* CR/AR bar chart mobile adjustments */
+                .contribution-section > div:nth-child(4) {
+                    padding: 1.5rem 1rem !important;
+                }
+
+                .contribution-section > div:nth-child(4) h3 {
+                    font-size: 1.1rem !important;
+                }
+
+                .contribution-section > div:nth-child(4) > div > div {
+                    max-width: 120px !important;
+                }
+
+                .contribution-section > div:nth-child(4) > div > div:first-child > div:last-child {
+                    height: 150px !important;
+                    min-height: 150px !important;
+                }
+
+                .contribution-section > div:nth-child(4) > div > div:last-child > div:last-child {
+                    height: 62px !important;
+                    min-height: 62px !important;
+                }
+
+                /* Dashboard buttons mobile */
+                .contribution-section > div:last-child {
+                    flex-direction: column !important;
+                    gap: 0.8rem !important;
+                }
+
+                .contribution-section a {
+                    padding: 0.8rem 1.5rem !important;
+                    font-size: 0.95rem !important;
+                    width: 100% !important;
+                    max-width: 350px !important;
                 }
 
                 .info-card {
@@ -631,6 +774,69 @@
                 .design-item:hover {
                     transform: none !important;
                 }
+
+                /* Contribution section - smaller mobile */
+                .contribution-section h2 {
+                    font-size: 1.6rem !important;
+                }
+
+                .chart-container {
+                    height: 150px !important;
+                    gap: 0.5rem !important;
+                    padding: 0 0.5rem !important;
+                }
+
+                .chart-container > div {
+                    max-width: 80px !important;
+                }
+
+                .chart-container > div > div:first-child {
+                    font-size: 1rem !important;
+                    margin-bottom: 0.5rem !important;
+                }
+
+                /* Adjust bar heights for small mobile */
+                .chart-container > div:nth-child(1) > div:last-child {
+                    height: 67px !important;
+                    min-height: 67px !important;
+                }
+
+                .chart-container > div:nth-child(2) > div:last-child {
+                    height: 144px !important;
+                    min-height: 144px !important;
+                }
+
+                .chart-container > div:nth-child(3) > div:last-child {
+                    height: 150px !important;
+                    min-height: 150px !important;
+                }
+
+                .chart-container > div > div:last-child > div {
+                    font-size: 0.9rem !important;
+                }
+
+                /* CR/AR bar chart small mobile adjustments */
+                .contribution-section > div:nth-child(4) > div > div {
+                    max-width: 100px !important;
+                }
+
+                .contribution-section > div:nth-child(4) > div > div > div:first-child {
+                    font-size: 1.2rem !important;
+                }
+
+                .contribution-section > div:nth-child(4) > div > div:first-child > div:last-child {
+                    height: 120px !important;
+                    min-height: 120px !important;
+                }
+
+                .contribution-section > div:nth-child(4) > div > div:last-child > div:last-child {
+                    height: 50px !important;
+                    min-height: 50px !important;
+                }
+
+                .contribution-section > div:nth-child(4) > div > div > div:last-child > div {
+                    font-size: 0.9rem !important;
+                }
             }
 
             /* Extra small screens (phones in portrait) */
@@ -674,10 +880,27 @@
                     border-radius: 12px !important;
                 }
 
+                .contribution-section {
+                    padding: 1rem !important;
+                    border-radius: 12px !important;
+                }
+
                 .resources-section h2,
                 .ethernet-designs-section h2,
                 .section h2 {
                     font-size: 1.5rem !important;
+                }
+
+                .contribution-section h2 {
+                    font-size: 1.4rem !important;
+                }
+
+                .contribution-section > div:nth-child(2) > div {
+                    padding: 0.8rem !important;
+                }
+
+                .contribution-section > div:nth-child(2) > div > div:first-child {
+                    font-size: 1.8rem !important;
                 }
 
                 /* Smaller resource cards */
@@ -730,6 +953,11 @@
                 }
 
                 /* Compact buttons */
+                .contribution-section a {
+                    font-size: 0.85rem !important;
+                    padding: 0.7rem 1.2rem !important;
+                }
+
                 .task-item a[style*="background: linear-gradient"] {
                     padding: 0.8rem 1rem !important;
                     font-size: 0.85rem !important;
@@ -863,7 +1091,7 @@
                     <div style="position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, #673ab7 0%, #9c27b0 100%); color: white; padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700; z-index: 2; box-shadow: 0 2px 8px rgba(103, 58, 183, 0.4);">FEATURED</div>
                     <div style="position: absolute; top: -20px; right: -20px; font-size: 4rem; opacity: 0.08;">🎓</div>
                     <div class="resource-title" style="font-size: 1.3rem; font-weight: 700; color: #4a148c; margin-bottom: 1rem; position: relative; z-index: 1;">🎓 Ethernet Training Plan</div>
-                    <a href="Domain Knowledge.pdf" class="resource-link" target="_blank" style="display: block; background: linear-gradient(135deg, rgba(103, 58, 183, 0.25) 0%, rgba(94, 53, 177, 0.25) 100%); padding: 0.8rem; border-radius: 8px; color: var(--text-color); text-decoration: none; font-weight: 600; position: relative; z-index: 1; transition: all 0.3s; border: 1px solid rgba(103, 58, 183, 0.5);">
+                    <a href="pdf/Domain Knowledge.pdf" class="resource-link" target="_blank" style="display: block; background: linear-gradient(135deg, rgba(103, 58, 183, 0.25) 0%, rgba(94, 53, 177, 0.25) 100%); padding: 0.8rem; border-radius: 8px; color: var(--text-color); text-decoration: none; font-weight: 600; position: relative; z-index: 1; transition: all 0.3s; border: 1px solid rgba(103, 58, 183, 0.5);">
                         View Training Plan (PDF) →
                     </a>
                     <div style="margin-top: 0.8rem; font-size: 0.85rem; color: #888; position: relative; z-index: 1;">Comprehensive Ethernet domain knowledge training plan for L2 engineers</div>
@@ -1058,6 +1286,97 @@
             }
         </style>
 
+        <!-- Contribution Overview Section -->
+        <div class="contribution-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(103, 58, 183, 0.4); margin-bottom: 2rem; color: white; position: relative; overflow: hidden;">
+            <!-- Decorative animated background elements -->
+            <div style="position: absolute; top: -50px; right: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%); border-radius: 50%; animation: pulse 4s ease-in-out infinite;"></div>
+            <div style="position: absolute; bottom: -100px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%); border-radius: 50%; animation: pulse 6s ease-in-out infinite;"></div>
+            
+            <div style="position: relative; z-index: 1;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="font-size: 2.5rem; margin: 0 0 0.5rem 0; font-weight: 700;">
+                    🏆 Contribution Overview
+                </h2>
+                <p style="opacity: 0.9; font-size: 1.05rem;">Customer cases closed and impact delivered</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 15px; padding: 1.5rem; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2);">
+                    <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">328</div>
+                    <div style="opacity: 0.9; font-size: 0.95rem;">Total Cases Closed</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 15px; padding: 1.5rem; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2);">
+                    <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">81</div>
+                    <div style="opacity: 0.9; font-size: 0.95rem;">Change Requests</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 15px; padding: 1.5rem; text-align: center; border: 2px solid rgba(255, 255, 255, 0.2);">
+                    <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">33</div>
+                    <div style="opacity: 0.9; font-size: 0.95rem;">Answer Records</div>
+                </div>
+            </div>
+
+            <!-- Bar Chart -->
+            <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem; margin-bottom: 2rem; border: 2px solid rgba(255, 255, 255, 0.2);">
+                <h3 style="margin: 0 0 3rem 0; font-size: 1.3rem; text-align: center;">Cases Closed by Year</h3>
+                <div class="chart-container" style="display: flex; align-items: flex-end; justify-content: space-around; height: 250px; gap: 2rem; padding: 0 2rem; margin-top: 1rem;">
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 150px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">61</div>
+                        <div style="background: linear-gradient(to top, #51cf66, #37b24d); width: 100%; height: 114px; min-height: 114px; border-radius: 10px 10px 0 0; transition: all 0.3s; position: relative; box-shadow: 0 4px 15px rgba(81, 207, 102, 0.3); cursor: pointer;" onclick="window.location.href='cases-dashboard.html?year=2023'">
+                            <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; font-size: 1.1rem;">2023</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 150px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">131</div>
+                        <div style="background: linear-gradient(to top, #51cf66, #37b24d); width: 100%; height: 244px; min-height: 244px; border-radius: 10px 10px 0 0; transition: all 0.3s; position: relative; box-shadow: 0 4px 15px rgba(81, 207, 102, 0.3); cursor: pointer;" onclick="window.location.href='cases-dashboard.html?year=2024'">
+                            <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; font-size: 1.1rem;">2024</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 150px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">136</div>
+                        <div style="background: linear-gradient(to top, #51cf66, #37b24d); width: 100%; height: 250px; min-height: 250px; border-radius: 10px 10px 0 0; transition: all 0.3s; position: relative; box-shadow: 0 4px 15px rgba(81, 207, 102, 0.3); cursor: pointer;" onclick="window.location.href='cases-dashboard.html?year=2025'">
+                            <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; font-size: 1.1rem;">2025</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="height: 40px;"></div>
+            </div>
+
+            <!-- CR & AR Contributions Bar Chart -->
+            <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem; margin-bottom: 2rem; border: 2px solid rgba(255, 255, 255, 0.2);">
+                <h3 style="margin: 0 0 2rem 0; font-size: 1.3rem; text-align: center;">Contributed CRs & ARs</h3>
+                <div style="display: flex; align-items: flex-end; justify-content: space-around; height: 200px; gap: 2rem; padding: 0 2rem;">
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 200px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">81</div>
+                        <div style="background: linear-gradient(to top, #4fc3f7, #0288d1); width: 100%; height: 200px; min-height: 200px; border-radius: 10px 10px 0 0; transition: all 0.3s; position: relative; box-shadow: 0 4px 15px rgba(79, 195, 247, 0.3); cursor: pointer;" onclick="window.location.href='cr-list.html'">
+                            <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; font-size: 1.1rem;">Change Requests</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 200px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">33</div>
+                        <div style="background: linear-gradient(to top, #ffd54f, #ffa000); width: 100%; height: 82px; min-height: 82px; border-radius: 10px 10px 0 0; transition: all 0.3s; position: relative; box-shadow: 0 4px 15px rgba(255, 213, 79, 0.3); cursor: pointer;" onclick="window.location.href='ar-list.html'">
+                            <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; font-size: 1.1rem;">Answer Records</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="height: 40px;"></div>
+            </div>
+
+            <!-- Dashboard Buttons -->
+            <div style="text-align: center; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="cases-dashboard.html" style="display: inline-block; background: rgba(255, 255, 255, 0.95); color: #667eea; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s; border: 2px solid rgba(255, 255, 255, 0.3);">
+                    📊 View Cases Dashboard →
+                </a>
+                <a href="cr-list.html" style="display: inline-block; background: rgba(255, 255, 255, 0.95); color: #0288d1; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s; border: 2px solid rgba(255, 255, 255, 0.3);">
+                    🔧 View CR List →
+                </a>
+                <a href="ar-list.html" style="display: inline-block; background: rgba(255, 255, 255, 0.95); color: #ffa000; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s; border: 2px solid rgba(255, 255, 255, 0.3);">
+                    📝 View AR List →
+                </a>
+            </div>
+            </div>
+        </div>
+
         <div class="tasks-section">
         <!-- Transition Tasks Section -->
         <div class="section" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 20px; padding: 2.5rem; position: relative; overflow: hidden;">
@@ -1149,8 +1468,8 @@
                 
                 <!-- PDF in column layout - full width below -->
                 <div class="pdf-container" style="margin-top: 1.5rem;" onmousedown="event.stopPropagation();" onclick="event.stopPropagation();" onmouseup="event.stopPropagation();">
-                    <iframe src="Jenkins Automation for WTS.pdf" type="application/pdf" width="100%" height="700px" style="border: 2px solid rgba(81, 207, 102, 0.3); border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); display: block; width: 100%; pointer-events: auto;">
-                        <p style="padding: 2rem;">Your browser does not support PDF viewing. <a href="Jenkins Automation for WTS.pdf" download style="color: var(--primary-color); text-decoration: underline;">Download the PDF</a> instead.</p>
+                    <iframe src="pdf/Jenkins Automation for WTS.pdf" type="application/pdf" width="100%" height="700px" style="border: 2px solid rgba(81, 207, 102, 0.3); border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); display: block; width: 100%; pointer-events: auto;">
+                        <p style="padding: 2rem;">Your browser does not support PDF viewing. <a href="pdf/Jenkins Automation for WTS.pdf" download style="color: var(--primary-color); text-decoration: underline;">Download the PDF</a> instead.</p>
                     </iframe>
                 </div>
             </div> <!-- End column wrapper -->
