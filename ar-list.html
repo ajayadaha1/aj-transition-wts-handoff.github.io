@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="theme-color" content="#667eea">
     <title>Answer Records (ARs) - Ethernet Documentation</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <script src="js/ar-data.js"></script>
     <style>
         * {
@@ -391,16 +392,31 @@
                 font-size: 2rem;
             }
 
+            .subtitle {
+                font-size: 1rem;
+            }
+
             .ar-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
             body {
                 padding: 1rem;
             }
 
+            header {
+                margin-bottom: 2rem;
+            }
+
             .stats-bar {
                 flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .stat-item {
+                width: 100%;
+                padding: 0.75rem;
             }
 
             .dark-mode-toggle {
@@ -409,11 +425,64 @@
                 padding: 0.6rem 1rem;
                 font-size: 0.9rem;
             }
+
+            .search-filter-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .filter-tags {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .ar-card {
+                padding: 1.5rem;
+            }
+
+            .ar-header h3 {
+                font-size: 1.1rem;
+            }
+
+            .ar-header .ar-number {
+                font-size: 0.85rem;
+            }
+
+            .back-button {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .tag {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.6rem;
+            }
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 0.75rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
             .dark-mode-toggle {
                 padding: 0.5rem 0.9rem;
+                font-size: 0.85rem;
+            }
+
+            .ar-card {
+                padding: 1.25rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
                 font-size: 0.85rem;
             }
         }

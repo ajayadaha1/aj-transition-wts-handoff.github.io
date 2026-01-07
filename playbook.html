@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="theme-color" content="#667eea">
     <title>Ethernet Debug Playbook</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
         * {
             margin: 0;
@@ -397,13 +398,39 @@
             h1 {
                 font-size: 2rem;
             }
+
+            .subtitle {
+                font-size: 1rem;
+            }
             
             body {
                 padding: 1rem;
             }
 
+            header {
+                margin-bottom: 2rem;
+            }
+
             .playbook-card {
                 padding: 1.5rem;
+            }
+
+            .playbook-card h2 {
+                font-size: 1.3rem;
+            }
+
+            .playbook-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .step-item {
+                padding: 1rem;
+            }
+
+            .code-block {
+                font-size: 0.85rem;
+                padding: 1rem;
+                overflow-x: auto;
             }
 
             .dark-mode-toggle {
@@ -412,12 +439,42 @@
                 padding: 0.6rem 1rem;
                 font-size: 0.9rem;
             }
+
+            .back-button {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .accordion-header {
+                padding: 0.8rem;
+                font-size: 0.95rem;
+            }
+
+            .accordion-content {
+                padding: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 0.75rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .playbook-card {
+                padding: 1.25rem;
+            }
+
             .dark-mode-toggle {
                 padding: 0.5rem 0.9rem;
                 font-size: 0.85rem;
+            }
+
+            .code-block {
+                font-size: 0.8rem;
             }
         }
 
