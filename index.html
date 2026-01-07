@@ -6,6 +6,8 @@
     <meta name="theme-color" content="#667eea">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Role Transition Tracker</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <style>
         /* Prevent text size adjustment on iOS */
@@ -19,6 +21,7 @@
         /* Smooth scrolling for better mobile experience */
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 100px; /* Account for fixed nav height */
         }
         
         /* Prevent horizontal overflow */
@@ -35,6 +38,299 @@
         .container {
             -webkit-overflow-scrolling: touch;
         }
+
+        /* Navigation link styles */
+        nav div .nav-link {
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        nav div .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+        
+        nav div .nav-link:hover::after {
+            width: 80%;
+        }
+        
+        nav div .nav-link:hover {
+            color: #667eea !important;
+        }
+        
+        nav div .nav-link.active::after {
+            width: 80%;
+        }
+        
+        nav div .nav-link.active {
+            color: #667eea !important;
+        }
+
+        /* Logo rotation animation */
+        #navbar-brand {
+            position: relative;
+        }
+
+        /* Decorative circle behind logo - matching personal website */
+        #navbar-brand::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -12px;
+            width: 40px;
+            height: 40px;
+            background: #3e64ff;
+            z-index: -1;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        #navbar-brand span:first-child {
+            transition: transform 0.6s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        #navbar-brand:hover span:first-child {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Fixed nav support */
+        body {
+            padding-top: 80px;
+        }
+
+        /* Dark mode nav styles */
+        .dark-mode nav {
+            background: rgba(30, 30, 30, 0.95) !important;
+        }
+
+        .dark-mode #navbar-brand span:last-child {
+            color: #fff !important;
+        }
+
+        .dark-mode .nav-link {
+            color: #ddd !important;
+        }
+
+        .dark-mode .nav-link:hover {
+            color: #667eea !important;
+        }
+
+        .dark-mode .nav-link.active {
+            color: #667eea !important;
+        }
+
+        /* Desktop menu default display */
+        .desktop-menu {
+            display: flex;
+        }
+
+        /* Mobile Navigation Styles */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: #333;
+            transition: transform 0.3s ease;
+            z-index: 1001;
+        }
+
+        .dark-mode .mobile-menu-toggle {
+            color: #fff;
+        }
+
+        .mobile-menu-toggle:active {
+            transform: scale(0.95);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 140px;
+            }
+
+            /* Mobile Navigation */
+            nav {
+                padding: 0 !important;
+                z-index: 1000;
+            }
+
+            nav > div {
+                padding: 0.75rem 1rem !important;
+                flex-wrap: wrap;
+            }
+
+            #navbar-brand span:first-child {
+                width: 35px !important;
+                height: 35px !important;
+                font-size: 1.2rem !important;
+            }
+
+            #navbar-brand::after {
+                width: 32px !important;
+                height: 32px !important;
+                left: -8px !important;
+            }
+
+            #navbar-brand span:last-child {
+                font-size: 1.1rem !important;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+                z-index: 1001;
+            }
+
+            .desktop-menu {
+                display: none !important;
+                flex-direction: column;
+                gap: 0.5rem !important;
+                width: 100%;
+                padding-top: 1rem;
+                animation: slideDown 0.3s ease;
+            }
+
+            .desktop-menu.mobile-menu-open {
+                display: flex !important;
+            }
+
+            nav div .nav-link {
+                width: 100%;
+                text-align: left;
+                padding: 0.75rem 1rem !important;
+                font-size: 0.95rem !important;
+                border-radius: 8px;
+                background: rgba(102, 126, 234, 0.05);
+            }
+
+            .dark-mode nav div .nav-link {
+                background: rgba(102, 126, 234, 0.1);
+            }
+
+            /* Container and sections */
+            .container {
+                padding: 1rem !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            header h1 {
+                font-size: 1.8rem !important;
+            }
+
+            .subtitle {
+                font-size: 1rem !important;
+            }
+
+            /* Info banner and sections */
+            .info-banner, 
+            #about,
+            #key-resources,
+            #ethernet-designs,
+            #contribution-overview,
+            #transition-tasks {
+                padding: 1.5rem !important;
+                margin-bottom: 1.5rem !important;
+                border-radius: 12px !important;
+            }
+
+            .info-title,
+            h2 {
+                font-size: 1.5rem !important;
+            }
+
+            h3 {
+                font-size: 1.2rem !important;
+            }
+
+            /* Tables */
+            table {
+                font-size: 0.85rem !important;
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            th, td {
+                padding: 0.5rem !important;
+                white-space: nowrap;
+            }
+
+            /* Cards and grid layouts */
+            .resource-grid,
+            .grid-layout {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            /* Buttons */
+            .dark-mode-toggle {
+                top: auto !important;
+                bottom: 1rem !important;
+                right: 1rem !important;
+                padding: 0.6rem 1rem !important;
+                font-size: 0.9rem !important;
+            }
+
+            #darkModeIcon {
+                font-size: 0.9rem;
+            }
+
+            #darkModeText {
+                font-size: 0.9rem;
+            }
+
+            /* Decorative elements */
+            .info-decoration {
+                display: none;
+            }
+
+            /* Status badges */
+            .status-badge {
+                font-size: 0.75rem !important;
+                padding: 0.25rem 0.5rem !important;
+            }
+
+            /* Progress bars */
+            .progress-bar {
+                height: 8px !important;
+            }
+
+            /* Scroll padding for mobile */
+            html {
+                scroll-padding-top: 80px !important;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -43,6 +339,24 @@
         <span id="darkModeText">Dark Mode</span>
     </button>
 
+    <!-- Navigation Bar -->
+    <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 999; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;">
+            <a href="#about" id="navbar-brand" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 50%; font-size: 1.5rem; font-weight: 700; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3); transition: all 0.3s ease;">A</span>
+                <span style="font-weight: 700; font-size: 1.3rem; color: #333;">jaya</span>
+            </a>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div id="mobile-menu" class="desktop-menu" style="gap: 2rem; align-items: center;">
+                <a href="#about" class="nav-link" style="text-decoration: none; color: #555; font-weight: 500; font-size: 1rem; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s; white-space: nowrap;">About</a>
+                <a href="#key-resources" class="nav-link" style="text-decoration: none; color: #555; font-weight: 500; font-size: 1rem; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s; white-space: nowrap;">Key Resources</a>
+                <a href="#ethernet-designs" class="nav-link" style="text-decoration: none; color: #555; font-weight: 500; font-size: 1rem; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s; white-space: nowrap;">Ethernet Reference Design</a>
+                <a href="#contribution-overview" class="nav-link" style="text-decoration: none; color: #555; font-weight: 500; font-size: 1rem; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s; white-space: nowrap;">Contribution Overview</a>
+                <a href="#transition-tasks" class="nav-link" style="text-decoration: none; color: #555; font-weight: 500; font-size: 1rem; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s; white-space: nowrap;">Transition Tasks</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <header>
             <h1>🚀 Role Transition Tracker</h1>
@@ -50,7 +364,7 @@
         </header>
 
         <!-- Information Section -->
-        <div class="info-banner" style="border-radius: 20px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.3); position: relative; overflow: hidden;">
+        <div id="about" class="info-banner" style="border-radius: 20px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.3); position: relative; overflow: hidden;">
             <!-- Decorative elements -->
             <div class="info-decoration" style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; border-radius: 50%; z-index: 0;"></div>
             <div class="info-decoration" style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; border-radius: 50%; z-index: 0;"></div>
@@ -477,21 +791,38 @@
                 }
 
                 .contribution-section > div:nth-child(4) h3 {
-                    font-size: 1.1rem !important;
+                    font-size: 1rem !important;
+                    margin-bottom: 2rem !important;
+                    padding-bottom: 2rem !important;
                 }
 
-                .contribution-section > div:nth-child(4) > div > div {
-                    max-width: 120px !important;
+                .cr-ar-chart {
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    height: auto !important;
+                    gap: 3rem !important;
+                    padding: 1rem !important;
                 }
 
-                .contribution-section > div:nth-child(4) > div > div:first-child > div:last-child {
+                .cr-ar-chart > div {
+                    max-width: 150px !important;
+                    width: 100% !important;
+                }
+
+                .cr-ar-chart > div > div:first-child {
+                    font-size: 1.3rem !important;
+                    margin-bottom: 1rem !important;
+                }
+
+                .cr-ar-chart > div > div:last-child {
                     height: 150px !important;
                     min-height: 150px !important;
                 }
 
-                .contribution-section > div:nth-child(4) > div > div:last-child > div:last-child {
-                    height: 62px !important;
-                    min-height: 62px !important;
+                .cr-ar-chart > div > div:last-child > div {
+                    font-size: 0.9rem !important;
+                    white-space: nowrap !important;
+                    bottom: -35px !important;
                 }
 
                 /* Dashboard buttons mobile */
@@ -632,12 +963,27 @@
                     touch-action: manipulation;
                 }
 
+                /* Fix all flex containers in task items */
+                .task-item > div[style*="display: flex"] {
+                    flex-direction: column !important;
+                    align-items: flex-start !important;
+                    gap: 1rem !important;
+                }
+
                 /* Stack task number and content vertically on mobile */
-                .task-item > div[style*="flex-direction: column"] > div[style*="display: flex"]:first-of-type {
+                .task-item > div[style*="flex-direction: column"] > div[style*="display: flex"]:first-of-type,
+                .task-item div[style*="display: flex; align-items: start"] {
                     flex-direction: column !important;
                     gap: 1rem !important;
                     align-items: center !important;
                     text-align: center !important;
+                    width: 100% !important;
+                }
+
+                /* Task content should take full width */
+                .task-content {
+                    width: 100% !important;
+                    flex: none !important;
                 }
 
                 /* Task number - better mobile size */
@@ -663,21 +1009,32 @@
                 }
 
                 /* Task content text improvements */
-                .task-item h3 {
-                    font-size: 1.2rem !important;
+                .task-item h3,
+                .task-item strong {
+                    font-size: 1.1rem !important;
                     line-height: 1.4 !important;
                     margin-bottom: 0.8rem !important;
+                    text-align: center !important;
+                    display: block !important;
+                    width: 100% !important;
                 }
 
                 .task-item p {
                     font-size: 0.9rem !important;
                     line-height: 1.6 !important;
+                    text-align: left !important;
+                }
+
+                .task-item ul {
+                    padding-left: 1.2rem !important;
+                    text-align: left !important;
                 }
 
                 .task-item li {
                     font-size: 0.9rem !important;
                     line-height: 1.6 !important;
                     margin-bottom: 0.5rem !important;
+                    text-align: left !important;
                 }
 
                 /* Inner cards in tasks */
@@ -686,6 +1043,16 @@
                     padding: 1rem !important;
                     border-radius: 10px !important;
                     margin: 0.8rem 0 !important;
+                    width: 100% !important;
+                    box-sizing: border-box !important;
+                }
+
+                /* All divs with margin-top in tasks */
+                .task-item > div > div > div[style*="margin-top"],
+                .task-item div[style*="margin-top: 0.8rem"],
+                .task-item div[style*="margin-top: 1rem"] {
+                    width: 100% !important;
+                    text-align: center !important;
                 }
 
                 /* Buttons in tasks - better touch targets */
@@ -693,7 +1060,7 @@
                     padding: 0.9rem 1.5rem !important;
                     font-size: 0.9rem !important;
                     min-height: 48px !important;
-                    display: inline-flex !important;
+                    display: block !important;
                     align-items: center !important;
                     justify-content: center !important;
                     width: 100% !important;
@@ -762,10 +1129,19 @@
 
                 /* Dark mode toggle - better mobile position */
                 .dark-mode-toggle {
-                    padding: 0.7rem 1.2rem !important;
-                    font-size: 0.9rem !important;
-                    top: 1rem !important;
+                    top: auto !important;
+                    bottom: 1rem !important;
                     right: 1rem !important;
+                    padding: 0.6rem 1rem !important;
+                    font-size: 0.85rem !important;
+                }
+
+                #darkModeIcon {
+                    font-size: 0.85rem;
+                }
+
+                #darkModeText {
+                    font-size: 0.85rem;
                 }
 
                 /* Hide hover effects on mobile (prevent sticky hover states) */
@@ -816,26 +1192,37 @@
                 }
 
                 /* CR/AR bar chart small mobile adjustments */
-                .contribution-section > div:nth-child(4) > div > div {
-                    max-width: 100px !important;
+                .contribution-section > div:nth-child(4) h3 {
+                    font-size: 0.9rem !important;
+                    margin-bottom: 1.5rem !important;
+                    padding-bottom: 2rem !important;
                 }
 
-                .contribution-section > div:nth-child(4) > div > div > div:first-child {
+                .cr-ar-chart {
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    padding: 1rem !important;
+                    gap: 3rem !important;
+                }
+
+                .cr-ar-chart > div {
+                    max-width: 120px !important;
+                    width: 100% !important;
+                }
+
+                .cr-ar-chart > div > div:first-child {
                     font-size: 1.2rem !important;
                 }
 
-                .contribution-section > div:nth-child(4) > div > div:first-child > div:last-child {
-                    height: 120px !important;
-                    min-height: 120px !important;
+                .cr-ar-chart > div > div:last-child {
+                    height: 130px !important;
+                    min-height: 130px !important;
                 }
 
-                .contribution-section > div:nth-child(4) > div > div:last-child > div:last-child {
-                    height: 50px !important;
-                    min-height: 50px !important;
-                }
-
-                .contribution-section > div:nth-child(4) > div > div > div:last-child > div {
-                    font-size: 0.9rem !important;
+                .cr-ar-chart > div > div:last-child > div {
+                    font-size: 0.85rem !important;
+                    white-space: nowrap !important;
+                    bottom: -32px !important;
                 }
             }
 
@@ -989,8 +1376,19 @@
 
                 /* Smaller dark mode toggle */
                 .dark-mode-toggle {
-                    padding: 0.6rem 1rem !important;
-                    font-size: 0.85rem !important;
+                    top: auto !important;
+                    bottom: 0.75rem !important;
+                    right: 0.75rem !important;
+                    padding: 0.5rem 0.8rem !important;
+                    font-size: 0.8rem !important;
+                }
+
+                #darkModeIcon {
+                    font-size: 0.8rem;
+                }
+
+                #darkModeText {
+                    font-size: 0.8rem;
                 }
 
                 /* Reduce emoji sizes for better readability */
@@ -1016,10 +1414,53 @@
                     height: 350px !important;
                 }
             }
+
+            /* Footer mobile styles */
+            @media (max-width: 768px) {
+                .page-footer {
+                    padding: 1.5rem 1rem !important;
+                }
+
+                .footer-content {
+                    text-align: center !important;
+                }
+
+                .last-updated {
+                    font-size: 0.85rem !important;
+                    margin-bottom: 0.5rem !important;
+                }
+
+                .powered-by {
+                    font-size: 0.8rem !important;
+                    line-height: 1.4 !important;
+                    padding: 0 0.5rem !important;
+                }
+
+                .powered-by #powered-text {
+                    display: inline-block !important;
+                    max-width: 100% !important;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .page-footer {
+                    padding: 1.2rem 0.75rem !important;
+                }
+
+                .last-updated {
+                    font-size: 0.75rem !important;
+                }
+
+                .powered-by {
+                    font-size: 0.65rem !important;
+                    line-height: 1.5 !important;
+                    padding: 0 0.5rem !important;
+                }
+            }
         </style>
 
         <!-- Key Resources & Links Section -->
-        <div class="resources-section" style="background: var(--card-bg); border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+        <div id="key-resources" class="resources-section" style="background: var(--card-bg); border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
             <div style="text-align: center; margin-bottom: 2.5rem;">
                 <h2 style="font-size: 2.5rem; margin: 0 0 0.5rem 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">
                     📚 Key Resources & Links
@@ -1127,10 +1568,45 @@
             .resource-card a:hover {
                 transform: translateX(5px);
             }
+
+            /* Dark mode resource card title colors */
+            body.dark-mode .resource-title {
+                color: #e0e0e0 !important;
+            }
+
+            /* Override specific colors for better dark mode visibility */
+            body.dark-mode .resource-card [style*="color: #1565c0"] {
+                color: #64b5f6 !important;
+            }
+
+            body.dark-mode .resource-card [style*="color: #6a1b9a"] {
+                color: #ba68c8 !important;
+            }
+
+            body.dark-mode .resource-card [style*="color: #c62828"] {
+                color: #ef5350 !important;
+            }
+
+            body.dark-mode .resource-card [style*="color: #4a148c"] {
+                color: #ce93d8 !important;
+            }
+
+            body.dark-mode .resource-card [style*="color: #f57c00"] {
+                color: #ffb74d !important;
+            }
+
+            body.dark-mode .resource-card [style*="color: #2e7d32"] {
+                color: #81c784 !important;
+            }
+
+            /* Dark mode description text */
+            body.dark-mode .resource-card [style*="color: #888"] {
+                color: #aaa !important;
+            }
         </style>
 
         <!-- Ethernet Reference Designs Section -->
-        <div class="ethernet-designs-section" style="background: var(--card-bg); border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+        <div id="ethernet-designs" class="ethernet-designs-section" style="background: var(--card-bg); border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.1); margin-bottom: 2rem;">
             <div style="text-align: center; margin-bottom: 2.5rem;">
                 <h2 style="font-size: 2.5rem; margin: 0 0 0.5rem 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">
                     🔧 Ethernet Reference Designs
@@ -1287,7 +1763,7 @@
         </style>
 
         <!-- Contribution Overview Section -->
-        <div class="contribution-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(103, 58, 183, 0.4); margin-bottom: 2rem; color: white; position: relative; overflow: hidden;">
+        <div id="contribution-overview" class="contribution-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(103, 58, 183, 0.4); margin-bottom: 2rem; color: white; position: relative; overflow: hidden;">
             <!-- Decorative animated background elements -->
             <div style="position: absolute; top: -50px; right: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%); border-radius: 50%; animation: pulse 4s ease-in-out infinite;"></div>
             <div style="position: absolute; bottom: -100px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%); border-radius: 50%; animation: pulse 6s ease-in-out infinite;"></div>
@@ -1345,7 +1821,7 @@
             <!-- CR & AR Contributions Bar Chart -->
             <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem; margin-bottom: 2rem; border: 2px solid rgba(255, 255, 255, 0.2);">
                 <h3 style="margin: 0 0 2rem 0; font-size: 1.3rem; text-align: center;">Contributed CRs & ARs</h3>
-                <div style="display: flex; align-items: flex-end; justify-content: space-around; height: 200px; gap: 2rem; padding: 0 2rem;">
+                <div class="cr-ar-chart" style="display: flex; align-items: flex-end; justify-content: space-around; height: 200px; gap: 2rem; padding: 0 2rem;">
                     <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 200px;">
                         <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">81</div>
                         <div style="background: linear-gradient(to top, #4fc3f7, #0288d1); width: 100%; height: 200px; min-height: 200px; border-radius: 10px 10px 0 0; transition: all 0.3s; position: relative; box-shadow: 0 4px 15px rgba(79, 195, 247, 0.3); cursor: pointer;" onclick="window.location.href='cr-list.html'">
@@ -1379,7 +1855,7 @@
 
         <div class="tasks-section">
         <!-- Transition Tasks Section -->
-        <div class="section" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 20px; padding: 2.5rem; position: relative; overflow: hidden;">
+        <div id="transition-tasks" class="section" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); border: 2px solid rgba(102, 126, 234, 0.2); border-radius: 20px; padding: 2.5rem; position: relative; overflow: hidden;">
             <!-- Decorative elements -->
             <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%); border-radius: 50%;"></div>
             <div style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(118, 75, 162, 0.15) 0%, transparent 70%); border-radius: 50%;"></div>
@@ -1585,6 +2061,22 @@
             icon.textContent = isDark ? '☀️' : '🌙';
             text.textContent = isDark ? 'Light Mode' : 'Dark Mode';
         }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('mobile-menu-open');
+        }
+
+        // Close mobile menu when clicking a link
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    const menu = document.getElementById('mobile-menu');
+                    menu.classList.remove('mobile-menu-open');
+                });
+            });
+        });
 
         // Load dark mode preference
         function loadDarkMode() {
@@ -1939,15 +2431,168 @@
             
             loadTaskStates();
             updateProgress();
+            
+            // Navigation highlighting on scroll
+            highlightActiveSection();
         });
+
+        // Highlight active navigation link based on scroll position
+        function highlightActiveSection() {
+            const sections = [
+                { id: 'about', element: null },
+                { id: 'key-resources', element: null },
+                { id: 'ethernet-designs', element: null },
+                { id: 'contribution-overview', element: null },
+                { id: 'transition-tasks', element: null }
+            ];
+
+            // Get section elements
+            sections.forEach(section => {
+                section.element = document.getElementById(section.id);
+            });
+
+            let hashProcessed = false;
+            let initialLoadComplete = false;
+
+            function updateActiveLink() {
+                let activeSection = 'about'; // Default to "About" section
+                
+                // Check if there's a hash in the URL
+                const urlHash = window.location.hash.substring(1); // Remove #
+                
+                // On initial load, always check hash first
+                if (!initialLoadComplete) {
+                    if (urlHash && sections.some(s => s.id === urlHash)) {
+                        // If there's a valid hash on initial load, use it
+                        activeSection = urlHash;
+                    } else {
+                        // No hash on initial load - use scroll position to determine section
+                        const scrollPosition = window.scrollY;
+                        
+                        // Only check scroll if we're scrolled down from the top
+                        if (scrollPosition < 100) {
+                            activeSection = 'about';
+                        } else {
+                            // Find which section we're actually in by checking scroll position
+                            for (let i = 0; i < sections.length; i++) {
+                                const section = sections[i];
+                                if (section.element) {
+                                    const sectionTop = section.element.offsetTop - 200;
+                                    
+                                    // For the last section, check if we're past its top
+                                    if (i === sections.length - 1) {
+                                        if (scrollPosition >= sectionTop) {
+                                            activeSection = section.id;
+                                            break;
+                                        }
+                                    } else {
+                                        // For other sections, check if we're within bounds
+                                        const sectionBottom = sectionTop + section.element.offsetHeight;
+                                        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                                            activeSection = section.id;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    initialLoadComplete = true;
+                } else {
+                    // After initial load, use scroll position for updates
+                    const scrollPosition = window.scrollY;
+                    
+                    if (scrollPosition < 100) {
+                        activeSection = 'about';
+                    } else {
+                        // Find which section we're actually in
+                        for (let i = 0; i < sections.length; i++) {
+                            const section = sections[i];
+                            if (section.element) {
+                                const sectionTop = section.element.offsetTop - 200;
+                                
+                                // For the last section, check if we're past its top
+                                if (i === sections.length - 1) {
+                                    if (scrollPosition >= sectionTop) {
+                                        activeSection = section.id;
+                                        break;
+                                    }
+                                } else {
+                                    // For other sections, check if we're within bounds
+                                    const sectionBottom = sectionTop + section.element.offsetHeight;
+                                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                                        activeSection = section.id;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Update nav links
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    const href = link.getAttribute('href').substring(1); // Remove #
+                    if (href === activeSection) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+
+            // Update on scroll - always use scroll position
+            window.addEventListener('scroll', () => updateActiveLink());
+            
+            // Initial load - check hash first
+            updateActiveLink();
+            
+            // Update on hash change (when clicking nav links)
+            window.addEventListener('hashchange', () => {
+                initialLoadComplete = false;
+                updateActiveLink();
+            });
+        }
     </script>
 
     <!-- Footer -->
     <footer class="page-footer">
         <div class="footer-content">
-            <p class="last-updated">Last Updated: January 6, 2026</p>
-            <p class="powered-by">☕ Powered by a big jar of coffee and AI ✨</p>
+            <p class="last-updated">Last Updated: January 7, 2026</p>
+            <p class="powered-by">☕ <span id="powered-text">Powered by a big jar of coffee and AI</span> ✨</p>
         </div>
     </footer>
+
+    <script>
+        // Rotating powered-by messages
+        const poweredMessages = [
+            "Powered by big jar of coffee and AI",
+            "Made with late-night coding",
+            "Built with determination",
+            "Fueled by caffeine",
+            "Thanks to Stack Overflow",
+            "Made with passion",
+            "By keyboard warriors"
+        ];
+        
+        let currentMessageIndex = 0;
+        const poweredTextElement = document.getElementById('powered-text');
+        
+        function rotateMessage() {
+            poweredTextElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                currentMessageIndex = (currentMessageIndex + 1) % poweredMessages.length;
+                poweredTextElement.textContent = poweredMessages[currentMessageIndex];
+                poweredTextElement.style.opacity = '1';
+            }, 500);
+        }
+        
+        // Add smooth transition
+        poweredTextElement.style.transition = 'opacity 0.5s ease-in-out';
+        
+        // Rotate message every 4 seconds
+        setInterval(rotateMessage, 4000);
+    </script>
 </body>
 </html>

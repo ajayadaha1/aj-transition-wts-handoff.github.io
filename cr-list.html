@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="theme-color" content="#667eea">
     <title>Change Requests (CRs) - WTS Contributions</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <script src="js/cr-data.js"></script>
     <style>
         * {
@@ -298,6 +299,10 @@
                 padding: 1rem;
             }
 
+            header {
+                margin-bottom: 2rem;
+            }
+
             h1 {
                 font-size: 2rem;
             }
@@ -313,6 +318,11 @@
                 font-size: 0.9rem;
             }
 
+            .back-button {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
             .dashboard-card {
                 padding: 1.5rem;
             }
@@ -324,10 +334,12 @@
 
             .stat-item {
                 min-width: 100%;
+                padding: 1rem;
             }
 
             .search-filter-bar {
                 flex-direction: column;
+                gap: 1rem;
             }
 
             .search-box {
@@ -337,45 +349,112 @@
             .filter-buttons {
                 width: 100%;
                 justify-content: center;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .cr-table-wrapper {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
             .cr-table {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+                min-width: 700px;
             }
 
             .cr-table th,
             .cr-table td {
-                padding: 0.8rem 0.5rem;
+                padding: 0.7rem 0.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.75rem;
             }
 
-            /* Stack table on very small screens */
-            @media (max-width: 480px) {
-                .cr-table thead {
-                    display: none;
-                }
+            h1 {
+                font-size: 1.6rem;
+            }
 
-                .cr-table tr {
-                    display: block;
-                    margin-bottom: 1rem;
-                    border: 1px solid var(--border-color);
-                    border-radius: 10px;
-                    padding: 1rem;
-                }
+            .subtitle {
+                font-size: 0.9rem;
+            }
 
-                .cr-table td {
-                    display: block;
-                    text-align: left;
-                    padding: 0.5rem 0;
-                    border: none;
-                }
+            .dashboard-card {
+                padding: 1.25rem;
+            }
 
-                .cr-table td:before {
-                    content: attr(data-label);
-                    font-weight: 700;
-                    display: block;
-                    margin-bottom: 0.3rem;
-                    color: #667eea;
-                }
+            .dark-mode-toggle {
+                top: 0.75rem;
+                right: 0.75rem;
+                padding: 0.5rem 0.9rem;
+                font-size: 0.85rem;
+            }
+
+            .stat-item {
+                padding: 0.85rem;
+            }
+
+            .stat-value {
+                font-size: 1.75rem;
+            }
+
+            .stat-label {
+                font-size: 0.85rem;
+            }
+
+            /* Card-style table layout for very small screens */
+            .cr-table {
+                min-width: 100%;
+                display: block;
+            }
+
+            .cr-table thead {
+                display: none;
+            }
+
+            .cr-table tbody {
+                display: block;
+            }
+
+            .cr-table tr {
+                display: block;
+                margin-bottom: 1rem;
+                border: 1px solid var(--border-color);
+                border-radius: 10px;
+                padding: 1rem;
+                background: var(--card-bg);
+            }
+
+            .cr-table td {
+                display: block;
+                text-align: left;
+                padding: 0.5rem 0;
+                border: none;
+                position: relative;
+                padding-left: 50%;
+            }
+
+            .cr-table td:before {
+                content: attr(data-label);
+                font-weight: 700;
+                display: block;
+                position: absolute;
+                left: 0;
+                width: 45%;
+                padding-right: 10px;
+                color: #667eea;
+            }
+
+            body.dark-mode .cr-table td:before {
+                color: #7c90f5;
             }
         }
     </style>

@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#667eea">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Cases Dashboard - Customer Support Overview</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     
     <!-- Load case data files -->
     <script src="js/cases-2023.js"></script>
@@ -285,20 +286,54 @@
                 padding: 1rem;
             }
 
+            header {
+                padding: 1.5rem 0;
+                margin-bottom: 1.5rem;
+            }
+
             header h1 {
                 font-size: 1.8rem;
             }
 
+            header p {
+                font-size: 0.95rem;
+            }
+
             .controls-row {
                 flex-direction: column;
+                gap: 1rem;
             }
 
             .search-box {
                 width: 100%;
             }
 
+            .filter-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
             .stats-row {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 0.85rem;
             }
 
             table {
@@ -306,31 +341,75 @@
             }
 
             th, td {
-                padding: 0.6rem;
+                padding: 0.6rem 0.4rem;
             }
 
             /* Make table scrollable on mobile */
             .cases-table {
                 overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
             table {
                 min-width: 800px;
             }
+
+            .case-link {
+                font-size: 0.85rem;
+            }
+
+            .dark-mode-toggle {
+                top: 15px;
+                right: 15px;
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .back-link {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
         }
 
         @media (max-width: 480px) {
+            .container {
+                padding: 0.75rem;
+            }
+
             header h1 {
                 font-size: 1.5rem;
             }
 
+            header p {
+                font-size: 0.85rem;
+            }
+
             .stat-number {
-                font-size: 2rem;
+                font-size: 1.75rem;
+            }
+
+            .stat-card {
+                padding: 0.85rem;
             }
 
             .dark-mode-toggle {
-                padding: 0.6rem 1rem;
+                top: 10px;
+                right: 10px;
+                padding: 0.5rem 0.9rem;
                 font-size: 0.85rem;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 0.5rem 0.3rem;
+            }
+
+            .filter-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
             }
         }
     </style>
