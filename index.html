@@ -273,6 +273,141 @@
             .pdf-container iframe {
                 pointer-events: auto;
             }
+
+            /* Mobile Responsive Styles */
+            @media (max-width: 768px) {
+                /* Reduce padding on mobile */
+                .container {
+                    padding: 1rem !important;
+                }
+
+                /* Smaller headers */
+                header h1 {
+                    font-size: 1.8rem !important;
+                }
+
+                header .subtitle {
+                    font-size: 0.9rem !important;
+                }
+
+                /* Info banner adjustments */
+                .info-banner {
+                    padding: 1.5rem !important;
+                }
+
+                .info-title {
+                    font-size: 1.3rem !important;
+                }
+
+                /* Task items - reduce padding */
+                .task-item {
+                    padding: 1rem !important;
+                }
+
+                /* Stack task number and content vertically on small screens */
+                .task-item > div[style*="flex-direction: column"] > div[style*="display: flex"] {
+                    flex-direction: column !important;
+                    gap: 1rem !important;
+                }
+
+                /* Make task number smaller on mobile */
+                .task-number {
+                    min-width: 35px !important;
+                    height: 35px !important;
+                    font-size: 1rem !important;
+                }
+
+                /* DONE badge positioning */
+                .done-badge {
+                    top: 0.8rem !important;
+                    right: 0.8rem !important;
+                    font-size: 0.7rem !important;
+                    padding: 0.3rem 0.8rem !important;
+                }
+
+                /* Background checkmark */
+                .task-item > div[style*="position: absolute"][style*="font-size: 5rem"] {
+                    font-size: 3rem !important;
+                    top: -10px !important;
+                    right: -10px !important;
+                }
+
+                /* Buttons - stack vertically on mobile */
+                div[style*="display: flex"][style*="flex-wrap: wrap"] a {
+                    width: 100% !important;
+                    text-align: center !important;
+                }
+
+                /* Resource grid - single column on mobile */
+                .resource-grid {
+                    grid-template-columns: 1fr !important;
+                }
+
+                /* Design category grid - single column */
+                .design-category > div[style*="display: grid"] {
+                    grid-template-columns: 1fr !important;
+                }
+
+                /* Reduce section padding */
+                .resources-section,
+                .ethernet-designs-section,
+                .section {
+                    padding: 1.5rem !important;
+                    border-radius: 15px !important;
+                }
+
+                /* Progress bar text - smaller */
+                .progress-bar {
+                    height: 40px !important;
+                }
+
+                #progressText {
+                    font-size: 0.85rem !important;
+                }
+
+                /* PDF viewer - adjust for mobile */
+                .pdf-container iframe {
+                    height: 400px !important;
+                }
+
+                /* Info content box grid - single column */
+                .info-content-box + div[style*="display: grid"] {
+                    grid-template-columns: 1fr !important;
+                }
+
+                /* Dark mode toggle - smaller */
+                .dark-mode-toggle {
+                    padding: 0.6rem 1rem !important;
+                    font-size: 0.85rem !important;
+                }
+            }
+
+            /* Extra small screens */
+            @media (max-width: 480px) {
+                .container {
+                    padding: 0.5rem !important;
+                }
+
+                header h1 {
+                    font-size: 1.5rem !important;
+                }
+
+                .task-item {
+                    padding: 0.8rem !important;
+                }
+
+                .info-banner,
+                .resources-section,
+                .ethernet-designs-section,
+                .section {
+                    padding: 1rem !important;
+                }
+
+                /* PDF even smaller on tiny screens */
+                .pdf-container iframe {
+                    height: 300px !important;
+                }
+            }
         </style>
 
         <!-- Key Resources & Links Section -->
@@ -1078,6 +1213,20 @@
         // Initialize on load
         window.addEventListener('DOMContentLoaded', () => {
             loadDarkMode();
+            
+            // Initialize default task states if not already set
+            const taskStates = JSON.parse(localStorage.getItem('taskStates') || '{}');
+            
+            // Set defaults for tasks 1, 2, 4, 5 if they don't exist in localStorage
+            if (!('task-1' in taskStates)) taskStates['task-1'] = true;
+            if (!('task-2' in taskStates)) taskStates['task-2'] = true;
+            if (!('task-3' in taskStates)) taskStates['task-3'] = false;
+            if (!('task-4' in taskStates)) taskStates['task-4'] = true;
+            if (!('task-5' in taskStates)) taskStates['task-5'] = true;
+            
+            // Save the initialized states
+            localStorage.setItem('taskStates', JSON.stringify(taskStates));
+            
             loadTaskStates();
             updateProgress();
         });
