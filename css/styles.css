@@ -702,6 +702,11 @@ body.dark-mode .note {
     }
 }
 
+/* Nav spacer - desktop default */
+.nav-spacer {
+    padding-top: 70px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     body {
@@ -714,6 +719,28 @@ body.dark-mode .note {
 
     .subtitle {
         font-size: 1rem;
+    }
+    
+    /* Remove header margin on mobile */
+    .header {
+        margin-top: 0 !important;
+    }
+    
+    /* Reduce nav spacer on mobile - minimal space */
+    .nav-spacer {
+        padding-top: 0px !important;
+    }
+    
+    /* Reduce container padding and pull up content */
+    .container {
+        padding-top: 0 !important;
+        margin-top: -15px !important;
+    }
+    
+    /* Also reduce header padding */
+    .header h1 {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
     }
 
     /* Unified tablet/mobile button adjustments */
@@ -1393,6 +1420,7 @@ body {
 /* Header Extensions for Ethernet Page */
 .header {
     text-align: center;
+    margin-top: 2rem;
     margin-bottom: 3rem;
     position: relative;
 }
@@ -2891,6 +2919,51 @@ body.dark-mode .mobile-menu-toggle {
     
     .nav-link::after {
         display: none;
+    }
+
+    /* Hide back button text on mobile, show only arrow */
+    nav a[href="index.html"]:not(#navbar-brand) span:last-child {
+        display: none;
+    }
+    
+    nav a[href="index.html"]:not(#navbar-brand) {
+        padding: 0.5rem !important;
+        min-width: 40px;
+    }
+    
+    /* Adjust Back to Tracker button on mobile */
+    a[href="index.html"][style*="position: fixed"][style*="top: 110px"] {
+        left: 1rem !important;
+        top: 95px !important;
+        padding: 0.5rem 0.8rem !important;
+        gap: 0 !important;
+    }
+    
+    /* Hide Back button text on mobile - stronger selector */
+    a[href="index.html"][style*="position: fixed"][style*="top: 110px"] > span:nth-child(2) {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+    
+    /* Keep arrow visible and centered */
+    a[href="index.html"][style*="position: fixed"][style*="top: 110px"] > span:first-child {
+        font-size: 1.3rem !important;
+        margin: 0 !important;
+    }
+    
+    /* Hide Back button text on mobile */
+    a[href="index.html"][style*="position: fixed"][style*="top: 90px"] span:last-child {
+        display: none !important;
+    }
+    
+    /* Keep arrow visible and centered */
+    a[href="index.html"][style*="position: fixed"][style*="top: 90px"] span:first-child {
+        font-size: 1.3rem !important;
+        margin: 0 !important;
     }
 }
 
