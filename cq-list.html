@@ -269,98 +269,262 @@
         }
 
         .cq-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--card-bg) 100%);
+            border-radius: 20px;
+            padding: 1.8rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-            border-left: 5px solid #667eea;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            overflow: hidden;
             animation: slideIn 0.5s ease-out;
+            cursor: pointer;
+        }
+
+        .cq-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(156, 39, 176, 0.08) 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            border-radius: 20px;
+            z-index: 0;
+        }
+
+        .cq-card:hover::before {
+            opacity: 1;
+        }
+
+        .cq-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #667eea 0%, #9c27b0 50%, #ba68c8 100%);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .cq-card:hover::after {
+            opacity: 1;
         }
 
         body.dark-mode .cq-card {
-            border-left-color: #7c90f5;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        body.dark-mode .cq-card::before {
+            background: linear-gradient(135deg, rgba(124, 144, 245, 0.1) 0%, rgba(156, 39, 176, 0.1) 100%);
+        }
+
+        body.dark-mode .cq-card::after {
+            background: linear-gradient(135deg, #7c90f5 0%, #9c27b0 50%, #ba68c8 100%);
         }
 
         .cq-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+        }
+
+        body.dark-mode .cq-card:hover {
+            box-shadow: 0 20px 50px rgba(124, 144, 245, 0.3);
+        }
+
+        .cq-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cq-card:hover .cq-date {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .cq-card:hover .cq-number {
+            background: none;
+            -webkit-text-fill-color: var(--text-color);
+            color: var(--text-color);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .cq-card:hover .cq-details {
+            color: var(--text-color);
+            background: rgba(102, 126, 234, 0.08);
+            border-left-color: rgba(102, 126, 234, 0.5);
+        }
+
+        body.dark-mode .cq-card:hover .cq-details {
+            background: rgba(124, 144, 245, 0.12);
+            border-left-color: rgba(124, 144, 245, 0.6);
         }
 
         .cq-number {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #9c27b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cq-number::before {
+            content: '💬';
+            font-size: 1.2rem;
+            filter: grayscale(0);
         }
 
         body.dark-mode .cq-number {
-            color: #7c90f5;
+            background: linear-gradient(135deg, #7c90f5 0%, #ba68c8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .cq-date {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-light);
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 500;
+        }
+
+        .cq-date::before {
+            content: '📅';
+            font-size: 0.9rem;
         }
 
         .cq-details {
             color: var(--text-light);
             font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
             word-wrap: break-word;
             word-break: break-word;
             overflow-wrap: break-word;
+            padding: 1rem;
+            background: rgba(102, 126, 234, 0.03);
+            border-radius: 10px;
+            border-left: 3px solid rgba(102, 126, 234, 0.3);
+        }
+
+        body.dark-mode .cq-details {
+            background: rgba(124, 144, 245, 0.08);
+            border-left-color: rgba(124, 144, 245, 0.4);
         }
 
         .cq-year-badge {
             display: inline-block;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+        }
+
+        .cq-year-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
         }
 
         .cq-year-badge.year-2023 {
-            background: #e3f2fd;
-            color: #1976d2;
+            background: linear-gradient(135deg, #64b5f6 0%, #2196f3 100%);
+            color: white;
         }
 
         .cq-year-badge.year-2024 {
-            background: #f3e5f5;
-            color: #7b1fa2;
+            background: linear-gradient(135deg, #ba68c8 0%, #9c27b0 100%);
+            color: white;
         }
 
         .cq-year-badge.year-2025 {
-            background: #e8f5e9;
-            color: #388e3c;
+            background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
+            color: white;
+        }
+
+        body.dark-mode .cq-year-badge.year-2023 {
+            background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%);
+        }
+
+        body.dark-mode .cq-year-badge.year-2024 {
+            background: linear-gradient(135deg, #ab47bc 0%, #8e24aa 100%);
+        }
+
+        body.dark-mode .cq-year-badge.year-2025 {
+            background: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%);
         }
 
         .cq-link {
-            display: inline-block;
-            background: #667eea;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #9c27b0 100%);
             color: white;
-            padding: 0.6rem 1.2rem;
+            padding: 0.7rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cq-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cq-link:hover::before {
+            left: 100%;
+        }
+
+        .cq-link::after {
+            content: '→';
+            transition: transform 0.3s;
         }
 
         body.dark-mode .cq-link {
-            background: #7c90f5;
+            background: linear-gradient(135deg, #7c90f5 0%, #ba68c8 100%);
+            box-shadow: 0 4px 15px rgba(124, 144, 245, 0.3);
         }
 
         .cq-link:hover {
-            background: #764ba2;
+            background: linear-gradient(135deg, #5a67d8 0%, #8e24aa 100%);
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .cq-link:hover::after {
             transform: translateX(5px);
         }
 
         body.dark-mode .cq-link:hover {
-            background: #9066c0;
+            background: linear-gradient(135deg, #6574cd 0%, #9c27b0 100%);
+            box-shadow: 0 6px 20px rgba(124, 144, 245, 0.4);
         }
 
         @keyframes slideIn {
@@ -501,13 +665,24 @@
             const card = document.createElement('div');
             card.className = 'cq-card';
             card.dataset.year = cq.year;
+            card.style.cursor = 'pointer';
+            
+            // Make the whole card clickable
+            card.onclick = function(e) {
+                // Don't trigger if clicking on the link button itself
+                if (!e.target.classList.contains('cq-link')) {
+                    if (cq.url) {
+                        window.open(cq.url, '_blank');
+                    }
+                }
+            };
 
             card.innerHTML = `
                 <div class="cq-number">${cq.id}</div>
-                <div class="cq-date">📅 ${cq.date}</div>
+                <div class="cq-date">${cq.date}</div>
                 <span class="cq-year-badge year-${cq.year}">${cq.year}</span>
                 <div class="cq-details">${cq.details || 'Community question reply'}</div>
-                ${cq.url ? `<a href="${cq.url}" class="cq-link" target="_blank">View Question →</a>` : ''}
+                ${cq.url ? `<a href="${cq.url}" class="cq-link" target="_blank" onclick="event.stopPropagation()">View Question</a>` : ''}
             `;
 
             return card;
