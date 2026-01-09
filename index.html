@@ -1523,20 +1523,52 @@
                 <div style="height: 40px;"></div>
             </div>
 
-            <!-- CR & AR Contributions Bar Chart -->
+            <!-- CR, AR & CQ Contributions Bar Chart -->
             <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem; margin-bottom: 2rem; border: 2px solid rgba(255, 255, 255, 0.2);">
-                <h3 style="margin: 0 0 2rem 0; font-size: 1.3rem; text-align: center;">Contributed CRs & ARs</h3>
-                <div class="cr-ar-chart" style="display: flex; align-items: flex-end; justify-content: space-around; height: 200px; gap: 2rem; padding: 0 2rem;">
-                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 200px;">
+                <h3 style="margin: 0 0 2rem 0; font-size: 1.3rem; text-align: center;">Contributed CRs, ARs & CQs</h3>
+                <div class="cr-ar-chart" style="display: flex; align-items: flex-end; justify-content: space-around; height: 200px; gap: 1.5rem; padding: 0 2rem;">
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 180px;">
                         <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">81</div>
                         <div style="background: linear-gradient(to top, #4fc3f7, #0288d1); width: 100%; height: 200px; min-height: 200px; border-radius: 10px 10px 0 0; transition: all 0.3s; position: relative; box-shadow: 0 4px 15px rgba(79, 195, 247, 0.3); cursor: pointer;" onclick="window.location.href='cr-list.html'">
-                            <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; font-size: 1.1rem;">Change Requests</div>
+                            <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; font-size: 1rem;">Change Requests</div>
                         </div>
                     </div>
-                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 200px;">
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 180px;">
                         <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">33</div>
                         <div style="background: linear-gradient(to top, #ffd54f, #ffa000); width: 100%; height: 82px; min-height: 82px; border-radius: 10px 10px 0 0; transition: all 0.3s; position: relative; box-shadow: 0 4px 15px rgba(255, 213, 79, 0.3); cursor: pointer;" onclick="window.location.href='ar-list.html'">
-                            <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; font-size: 1.1rem;">Answer Records</div>
+                            <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; font-size: 1rem;">Answer Records</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 180px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">102</div>
+                        <div style="background: linear-gradient(to top, #9575cd, #7e57c2); width: 100%; height: 200px; min-height: 200px; border-radius: 10px 10px 0 0; transition: all 0.3s; position: relative; box-shadow: 0 4px 15px rgba(149, 117, 205, 0.3); cursor: pointer;" onclick="window.location.href='cq-list.html'">
+                            <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; font-size: 1rem;">Community Questions</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="height: 40px;"></div>
+            </div>
+
+            <!-- CQ Contributions by Year Bar Chart -->
+            <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem; margin-bottom: 2rem; border: 2px solid rgba(255, 255, 255, 0.2);">
+                <h3 style="margin: 0 0 3rem 0; font-size: 1.3rem; text-align: center;">Community Questions by Year</h3>
+                <div class="chart-container" style="display: flex; align-items: flex-end; justify-content: space-around; height: 250px; gap: 2rem; padding: 0 2rem; margin-top: 1rem;">
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 150px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">2</div>
+                        <div style="background: linear-gradient(to top, #4fc3f7, #0288d1); width: 100%; height: 10px; min-height: 10px; border-radius: 10px 10px 0 0; transition: all 0.3s; position: relative; box-shadow: 0 4px 15px rgba(79, 195, 247, 0.3); cursor: pointer;" onclick="window.location.href='cq-list.html?year=2023'">
+                            <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; font-size: 1.1rem;">2023</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 150px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">45</div>
+                        <div style="background: linear-gradient(to top, #9575cd, #7e57c2); width: 100%; height: 180px; min-height: 180px; border-radius: 10px 10px 0 0; transition: all 0.3s; position: relative; box-shadow: 0 4px 15px rgba(149, 117, 205, 0.3); cursor: pointer;" onclick="window.location.href='cq-list.html?year=2024'">
+                            <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; font-size: 1.1rem;">2024</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 150px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">55</div>
+                        <div style="background: linear-gradient(to top, #ba68c8, #9c27b0); width: 100%; height: 220px; min-height: 220px; border-radius: 10px 10px 0 0; transition: all 0.3s; position: relative; box-shadow: 0 4px 15px rgba(186, 104, 200, 0.3); cursor: pointer;" onclick="window.location.href='cq-list.html?year=2025'">
+                            <div style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-weight: 700; font-size: 1.1rem;">2025</div>
                         </div>
                     </div>
                 </div>
@@ -1553,6 +1585,9 @@
                 </a>
                 <a href="ar-list.html" style="display: inline-block; background: rgba(255, 255, 255, 0.95); color: #ffa000; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s; border: 2px solid rgba(255, 255, 255, 0.3);">
                     📝 View AR List →
+                </a>
+                <a href="cq-list.html" style="display: inline-block; background: rgba(255, 255, 255, 0.95); color: #7e57c2; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s; border: 2px solid rgba(255, 255, 255, 0.3);">
+                    💬 View CQ List →
                 </a>
             </div>
             </div>
